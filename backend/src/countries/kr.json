@@ -1,0 +1,38 @@
+{
+  "code": "KR",
+  "name": "South Korea",
+  "nativeName": "대한민국",
+  "language": "ko",
+  "languages": ["ko"],
+  "rtl": false,
+  "identityScheme": "g-pin",
+  "flagEmoji": "🇰🇷",
+  "region": "asia",
+  "branding": {
+    "primaryColor": "#003478",
+    "secondaryColor": "#CD2E3A",
+    "surfaceColor": "#F5F8FF",
+    "onPrimaryColor": "#FFFFFF",
+    "darkStatusBar": true,
+    "governmentPortalName": "korea.go.kr",
+    "governmentPortalURL": "https://www.korea.go.kr",
+    "governmentLogoAlt": "대한민국 정부 포털",
+    "flagColors": ["#FFFFFF", "#003478", "#CD2E3A", "#000000"],
+    "headerFontFamily": "Noto Sans KR"
+  },
+  "policies": [
+    {
+      "id": "kr-low-birthrate-2026",
+      "title": "저출생 극복 종합대책 2026",
+      "description": "출산율 제고를 위한 육아수당 대폭 인상, 공공 보육시설 확대, 주거 지원 강화 등 종합 패키지 정책.",
+      "category": "education",
+      "documentIpfsCID": "",
+      "votingDeadlineISO": "2026-08-15T23:59:59Z",
+      "options": [
+        { "id": "support",  "label": "option.support",  "description": "option.support.desc" },
+        { "id": "oppose",   "label": "option.oppose",   "description": "option.oppose.desc" },
+        { "id": "abstain",  "label": "option.abstain",  "description": "option.abstain.desc" }
+      ]
+    }
+  ]
+}

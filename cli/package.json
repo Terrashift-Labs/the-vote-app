@@ -1,0 +1,24 @@
+{
+  "name": "the-vote-app-cli",
+  "version": "1.0.0",
+  "description": "Standalone CLI to audit TheVoteApp blockchain ledger — no backend needed",
+  "bin": {
+    "verify-vote": "./dist/index.js"
+  },
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsx src/index.ts"
+  },
+  "dependencies": {
+    "commander": "^12.1.0",
+    "ethers": "^6.13.1",
+    "chalk": "^5.3.0",
+    "ora": "^8.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "typescript": "^5.5.4",
+    "tsx": "^4.16.0"
+  }
+}

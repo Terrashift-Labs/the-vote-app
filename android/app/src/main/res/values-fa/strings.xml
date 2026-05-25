@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Persian / Farsi (RTL) -->
+<resources>
+    <string name="app_name">TheVoteApp</string>
+    <string name="back">بازگشت</string>
+    <string name="ok">تأیید</string>
+    <string name="cancel">لغو</string>
+    <string name="loading">در حال بارگذاری…</string>
+    <string name="error_title">خطا</string>
+    <string name="retry">تلاش مجدد</string>
+    <string name="auth_title">برای رأی‌گیری وارد شوید</string>
+    <string name="auth_subtitle">برای ادامه کشور خود را انتخاب کنید</string>
+    <string name="biometric_title">رأی خود را تأیید کنید</string>
+    <string name="biometric_subtitle">برای ارسال امن رأی احراز هویت کنید</string>
+    <string name="biometric_failed">احراز هویت ناموفق بود. لطفاً دوباره امتحان کنید.</string>
+    <string name="fido2_title">کلید سخت‌افزاری</string>
+    <string name="fido2_subtitle">کلید امنیتی را وارد کنید یا لمس کنید</string>
+    <string name="policies_title">سیاست‌های فعال</string>
+    <string name="policy_deadline">رأی‌گیری در %1$s بسته می‌شود</string>
+    <string name="policy_status_open">باز</string>
+    <string name="policy_status_closed">بسته</string>
+    <string name="policy_status_tallying">در حال شمارش</string>
+    <string name="policy_status_finalised">نهایی</string>
+    <string name="view_results">مشاهده نتایج</string>
+    <string name="read_document">خواندن سند سیاست</string>
+    <string name="select_your_vote">رأی خود را انتخاب کنید</string>
+    <string name="submit_vote">ارسال رأی</string>
+    <string name="signing_vote">در حال امضای رأی…</string>
+    <string name="submitting_vote">در حال ثبت در بلاکچین…</string>
+    <string name="verifying_vote">در حال تأیید در دفتر کل…</string>
+    <string name="vote_confirmed">رأی ثبت شد</string>
+    <string name="vote_confirmed_desc">رأی شما به‌طور دائمی در بلاکچین ثبت شده است. می‌توانید در هر زمان با شماره رسید خود تأیید کنید.</string>
+    <string name="transaction_hash">TX: %1$s</string>
+    <string name="vote_receipt">رسید</string>
+    <string name="verify_vote">تأیید رأی من</string>
+    <string name="option_support">موافق</string>
+    <string name="option_oppose">مخالف</string>
+    <string name="option_abstain">ممتنع</string>
+    <string name="results_title">نتایج</string>
+    <string name="total_votes">مجموع آرا: %1$s</string>
+    <string name="results_pending">نتایج پس از بسته شدن رأی‌گیری اعلام می‌شود.</string>
+    <string name="official_portal">درگاه رسمی دولت</string>
+    <string name="powered_by">با پشتیبانی TheVoteApp — متن‌باز، امن با بلاکچین</string>
+</resources>

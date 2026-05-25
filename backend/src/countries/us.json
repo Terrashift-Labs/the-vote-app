@@ -1,0 +1,51 @@
+{
+  "code": "US",
+  "name": "United States",
+  "nativeName": "United States",
+  "language": "en",
+  "languages": ["en", "es"],
+  "rtl": false,
+  "identityScheme": "login-gov",
+  "flagEmoji": "🇺🇸",
+  "region": "americas",
+  "branding": {
+    "primaryColor": "#0071BC",
+    "secondaryColor": "#B22234",
+    "surfaceColor": "#F1F1F1",
+    "onPrimaryColor": "#FFFFFF",
+    "darkStatusBar": true,
+    "governmentPortalName": "USA.gov",
+    "governmentPortalURL": "https://www.usa.gov",
+    "governmentLogoAlt": "An official website of the United States government",
+    "flagColors": ["#B22234", "#FFFFFF", "#3C3B6E"],
+    "headerFontFamily": "Public Sans"
+  },
+  "policies": [
+    {
+      "id": "us-infrastructure-2026",
+      "title": "Infrastructure Investment Act 2026",
+      "description": "Proposed federal allocation for roads, broadband, clean energy, and water infrastructure across all 50 states.",
+      "category": "infrastructure",
+      "documentIpfsCID": "",
+      "votingDeadlineISO": "2026-11-15T23:59:59Z",
+      "options": [
+        { "id": "support",  "label": "option.support",  "description": "option.support.desc" },
+        { "id": "oppose",   "label": "option.oppose",   "description": "option.oppose.desc" },
+        { "id": "abstain",  "label": "option.abstain",  "description": "option.abstain.desc" }
+      ]
+    },
+    {
+      "id": "us-healthcare-access-2026",
+      "title": "Universal Healthcare Access Act 2026",
+      "description": "Legislation to expand Medicaid eligibility and introduce a public insurance option for uninsured Americans.",
+      "category": "healthcare",
+      "documentIpfsCID": "",
+      "votingDeadlineISO": "2026-11-15T23:59:59Z",
+      "options": [
+        { "id": "support",  "label": "option.support",  "description": "option.support.desc" },
+        { "id": "oppose",   "label": "option.oppose",   "description": "option.oppose.desc" },
+        { "id": "abstain",  "label": "option.abstain",  "description": "option.abstain.desc" }
+      ]
+    }
+  ]
+}

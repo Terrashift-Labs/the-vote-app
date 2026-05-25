@@ -1,0 +1,38 @@
+{
+  "code": "NL",
+  "name": "Netherlands",
+  "nativeName": "Nederland",
+  "language": "nl",
+  "languages": ["nl"],
+  "rtl": false,
+  "identityScheme": "digid",
+  "flagEmoji": "🇳🇱",
+  "region": "europe",
+  "branding": {
+    "primaryColor": "#154273",
+    "secondaryColor": "#F15A22",
+    "surfaceColor": "#F0F5FF",
+    "onPrimaryColor": "#FFFFFF",
+    "darkStatusBar": true,
+    "governmentPortalName": "rijksoverheid.nl",
+    "governmentPortalURL": "https://www.rijksoverheid.nl",
+    "governmentLogoAlt": "Rijksoverheid — De overheid voor iedereen",
+    "flagColors": ["#AE1C28", "#FFFFFF", "#21468B"],
+    "headerFontFamily": "RO Sans"
+  },
+  "policies": [
+    {
+      "id": "nl-stikstof-2026",
+      "title": "Stikstofaanpak Transitiefonds 2026",
+      "description": "Wetgeving voor de reductie van stikstofuitstoot met vrijwillige en verplichte uitkoop van veehouderijen nabij Natura 2000-gebieden.",
+      "category": "environment",
+      "documentIpfsCID": "",
+      "votingDeadlineISO": "2026-04-30T23:59:59Z",
+      "options": [
+        { "id": "support",  "label": "option.support",  "description": "option.support.desc" },
+        { "id": "oppose",   "label": "option.oppose",   "description": "option.oppose.desc" },
+        { "id": "abstain",  "label": "option.abstain",  "description": "option.abstain.desc" }
+      ]
+    }
+  ]
+}

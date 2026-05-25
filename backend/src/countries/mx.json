@@ -1,0 +1,50 @@
+{
+  "code": "MX",
+  "name": "Mexico",
+  "nativeName": "México",
+  "language": "es",
+  "languages": ["es"],
+  "rtl": false,
+  "identityScheme": "e-firma-sat",
+  "flagEmoji": "🇲🇽",
+  "region": "americas",
+  "branding": {
+    "primaryColor": "#006847",
+    "secondaryColor": "#CE1126",
+    "surfaceColor": "#F0FFF6",
+    "onPrimaryColor": "#FFFFFF",
+    "darkStatusBar": true,
+    "governmentPortalName": "gob.mx",
+    "governmentPortalURL": "https://www.gob.mx",
+    "governmentLogoAlt": "Gobierno de México — Escudo Nacional",
+    "flagColors": ["#006847", "#FFFFFF", "#CE1126"]
+  },
+  "policies": [
+    {
+      "id": "mx-imss-bienestar-2026",
+      "title": "Expansión IMSS-Bienestar 2026",
+      "description": "Ampliación del programa IMSS-Bienestar para garantizar atención médica gratuita en municipios sin derechohabiencia.",
+      "category": "healthcare",
+      "documentIpfsCID": "",
+      "votingDeadlineISO": "2026-11-20T23:59:59Z",
+      "options": [
+        { "id": "support",  "label": "option.support",  "description": "option.support.desc" },
+        { "id": "oppose",   "label": "option.oppose",   "description": "option.oppose.desc" },
+        { "id": "abstain",  "label": "option.abstain",  "description": "option.abstain.desc" }
+      ]
+    },
+    {
+      "id": "mx-seguridad-2026",
+      "title": "Ley de Seguridad y Justicia 2026",
+      "description": "Reforma al sistema penitenciario, fortalecimiento de la Guardia Nacional y mesas de paz para zonas de alta conflictividad.",
+      "category": "justice",
+      "documentIpfsCID": "",
+      "votingDeadlineISO": "2026-11-20T23:59:59Z",
+      "options": [
+        { "id": "support",  "label": "option.support",  "description": "option.support.desc" },
+        { "id": "oppose",   "label": "option.oppose",   "description": "option.oppose.desc" },
+        { "id": "abstain",  "label": "option.abstain",  "description": "option.abstain.desc" }
+      ]
+    }
+  ]
+}

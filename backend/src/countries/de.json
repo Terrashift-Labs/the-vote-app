@@ -1,0 +1,51 @@
+{
+  "code": "DE",
+  "name": "Germany",
+  "nativeName": "Deutschland",
+  "language": "de",
+  "languages": ["de"],
+  "rtl": false,
+  "identityScheme": "eidas-de",
+  "flagEmoji": "🇩🇪",
+  "region": "europe",
+  "branding": {
+    "primaryColor": "#000000",
+    "secondaryColor": "#DD0000",
+    "surfaceColor": "#F5F5F5",
+    "onPrimaryColor": "#FFFFFF",
+    "darkStatusBar": true,
+    "governmentPortalName": "bundesregierung.de",
+    "governmentPortalURL": "https://www.bundesregierung.de",
+    "governmentLogoAlt": "Bundesadler — Offizielles Portal der Bundesregierung",
+    "flagColors": ["#000000", "#DD0000", "#FFCE00"],
+    "headerFontFamily": "BundesSans"
+  },
+  "policies": [
+    {
+      "id": "de-energiewende-2026",
+      "title": "Energiewende Beschleunigungsgesetz 2026",
+      "description": "Gesetz zur Beschleunigung des Ausbaus erneuerbarer Energien und zur Abschaltung der letzten Kohlekraftwerke bis 2030.",
+      "category": "environment",
+      "documentIpfsCID": "",
+      "votingDeadlineISO": "2026-09-30T23:59:59Z",
+      "options": [
+        { "id": "support",  "label": "option.support",  "description": "option.support.desc" },
+        { "id": "oppose",   "label": "option.oppose",   "description": "option.oppose.desc" },
+        { "id": "abstain",  "label": "option.abstain",  "description": "option.abstain.desc" }
+      ]
+    },
+    {
+      "id": "de-digitale-verwaltung-2026",
+      "title": "Digitale-Verwaltung-Gesetz 2026",
+      "description": "Einführung vollständig digitaler Behördendienste und Abschaffung papierbasierter Formulare in der Bundesverwaltung.",
+      "category": "infrastructure",
+      "documentIpfsCID": "",
+      "votingDeadlineISO": "2026-09-30T23:59:59Z",
+      "options": [
+        { "id": "support",  "label": "option.support",  "description": "option.support.desc" },
+        { "id": "oppose",   "label": "option.oppose",   "description": "option.oppose.desc" },
+        { "id": "abstain",  "label": "option.abstain",  "description": "option.abstain.desc" }
+      ]
+    }
+  ]
+}

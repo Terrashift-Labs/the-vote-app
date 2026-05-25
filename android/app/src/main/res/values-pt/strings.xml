@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">TheVoteApp</string>
+    <string name="back">Voltar</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Cancelar</string>
+    <string name="loading">Carregando…</string>
+    <string name="error_title">Erro</string>
+    <string name="retry">Tentar novamente</string>
+    <string name="auth_title">Entrar para votar</string>
+    <string name="auth_subtitle">Escolha seu país para continuar</string>
+    <string name="biometric_title">Confirme seu voto</string>
+    <string name="biometric_subtitle">Autentique-se para enviar seu voto com segurança</string>
+    <string name="biometric_failed">Autenticação falhou. Por favor, tente novamente.</string>
+    <string name="fido2_title">Chave de hardware</string>
+    <string name="fido2_subtitle">Insira ou toque na sua chave de segurança para confirmar</string>
+    <string name="policies_title">Políticas ativas</string>
+    <string name="policy_deadline">Votação encerra em %1$s</string>
+    <string name="policy_status_open">Aberta</string>
+    <string name="policy_status_closed">Encerrada</string>
+    <string name="policy_status_tallying">Apuração</string>
+    <string name="policy_status_finalised">Finalizada</string>
+    <string name="view_results">Ver resultados</string>
+    <string name="read_document">Ler documento</string>
+    <string name="select_your_vote">Selecione seu voto</string>
+    <string name="submit_vote">Enviar voto</string>
+    <string name="signing_vote">Assinando seu voto…</string>
+    <string name="submitting_vote">Registrando na blockchain…</string>
+    <string name="verifying_vote">Verificando no registro…</string>
+    <string name="vote_confirmed">Voto registrado</string>
+    <string name="vote_confirmed_desc">Seu voto foi registrado permanentemente na blockchain. Você pode verificá-lo a qualquer momento com seu recibo.</string>
+    <string name="transaction_hash">TX: %1$s</string>
+    <string name="vote_receipt">Recibo</string>
+    <string name="verify_vote">Verificar meu voto</string>
+    <string name="option_support">A favor</string>
+    <string name="option_oppose">Contra</string>
+    <string name="option_abstain">Abstenção</string>
+    <string name="results_title">Resultados</string>
+    <string name="total_votes">Total de votos: %1$s</string>
+    <string name="results_pending">Os resultados estarão disponíveis quando a votação encerrar.</string>
+    <string name="official_portal">Portal oficial do governo</string>
+    <string name="powered_by">Desenvolvido por TheVoteApp — código aberto, seguro com blockchain</string>
+</resources>

@@ -1,0 +1,38 @@
+{
+  "code": "PK",
+  "name": "Pakistan",
+  "nativeName": "پاکستان",
+  "language": "ur",
+  "languages": ["ur", "en", "pa", "ps", "sd"],
+  "rtl": true,
+  "identityScheme": "nadra-cnic",
+  "flagEmoji": "🇵🇰",
+  "region": "asia",
+  "branding": {
+    "primaryColor": "#01411C",
+    "secondaryColor": "#FFFFFF",
+    "surfaceColor": "#F0FFF5",
+    "onPrimaryColor": "#FFFFFF",
+    "darkStatusBar": true,
+    "governmentPortalName": "pakistan.gov.pk",
+    "governmentPortalURL": "https://www.pakistan.gov.pk",
+    "governmentLogoAlt": "اسلامی جمہوریہ پاکستان — قومی نشان",
+    "flagColors": ["#01411C", "#FFFFFF"],
+    "headerFontFamily": "Noto Nastaliq Urdu"
+  },
+  "policies": [
+    {
+      "id": "pk-education-emergency-2026",
+      "title": "تعلیمی ہنگامی منصوبہ 2026",
+      "description": "پاکستان کے 2 کروڑ سے زائد اسکول سے باہر بچوں کو تعلیمی دھارے میں لانے کے لیے قومی ہنگامی منصوبہ۔",
+      "category": "education",
+      "documentIpfsCID": "",
+      "votingDeadlineISO": "2026-08-14T23:59:59Z",
+      "options": [
+        { "id": "support",  "label": "option.support",  "description": "option.support.desc" },
+        { "id": "oppose",   "label": "option.oppose",   "description": "option.oppose.desc" },
+        { "id": "abstain",  "label": "option.abstain",  "description": "option.abstain.desc" }
+      ]
+    }
+  ]
+}

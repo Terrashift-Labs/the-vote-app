@@ -1,0 +1,51 @@
+{
+  "code": "JP",
+  "name": "Japan",
+  "nativeName": "日本",
+  "language": "ja",
+  "languages": ["ja"],
+  "rtl": false,
+  "identityScheme": "my-number",
+  "flagEmoji": "🇯🇵",
+  "region": "asia",
+  "branding": {
+    "primaryColor": "#BC002D",
+    "secondaryColor": "#1A1A1A",
+    "surfaceColor": "#FAFAFA",
+    "onPrimaryColor": "#FFFFFF",
+    "darkStatusBar": true,
+    "governmentPortalName": "e-Gov",
+    "governmentPortalURL": "https://www.e-gov.go.jp",
+    "governmentLogoAlt": "e-Gov 電子政府の総合窓口",
+    "flagColors": ["#FFFFFF", "#BC002D"],
+    "headerFontFamily": "Noto Sans JP"
+  },
+  "policies": [
+    {
+      "id": "jp-digital-government-2026",
+      "title": "デジタル行政サービス改革法 2026",
+      "description": "全ての行政手続きのオンライン化と、マイナンバーカードを活用したワンストップサービスの拡充。",
+      "category": "infrastructure",
+      "documentIpfsCID": "",
+      "votingDeadlineISO": "2026-07-01T23:59:59Z",
+      "options": [
+        { "id": "support",  "label": "option.support",  "description": "option.support.desc" },
+        { "id": "oppose",   "label": "option.oppose",   "description": "option.oppose.desc" },
+        { "id": "abstain",  "label": "option.abstain",  "description": "option.abstain.desc" }
+      ]
+    },
+    {
+      "id": "jp-childcare-2026",
+      "title": "少子化対策総合法 2026",
+      "description": "出生率向上のための育児支援給付金の拡充、保育施設の整備、および育児休業制度の強化。",
+      "category": "education",
+      "documentIpfsCID": "",
+      "votingDeadlineISO": "2026-07-01T23:59:59Z",
+      "options": [
+        { "id": "support",  "label": "option.support",  "description": "option.support.desc" },
+        { "id": "oppose",   "label": "option.oppose",   "description": "option.oppose.desc" },
+        { "id": "abstain",  "label": "option.abstain",  "description": "option.abstain.desc" }
+      ]
+    }
+  ]
+}

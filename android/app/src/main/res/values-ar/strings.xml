@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Arabic (RTL) translations -->
+<resources>
+    <string name="app_name">TheVoteApp</string>
+    <string name="back">رجوع</string>
+    <string name="ok">موافق</string>
+    <string name="cancel">إلغاء</string>
+    <string name="loading">جارٍ التحميل…</string>
+    <string name="error_title">خطأ</string>
+    <string name="retry">إعادة المحاولة</string>
+    <string name="auth_title">تسجيل الدخول للتصويت</string>
+    <string name="auth_subtitle">اختر بلدك للمتابعة</string>
+    <string name="biometric_title">تأكيد تصويتك</string>
+    <string name="biometric_subtitle">المصادقة لإرسال تصويتك بأمان</string>
+    <string name="biometric_failed">فشلت المصادقة. يرجى المحاولة مرة أخرى.</string>
+    <string name="fido2_title">مفتاح الأجهزة</string>
+    <string name="fido2_subtitle">أدخل مفتاح الأمان أو انقر عليه للتأكيد</string>
+    <string name="policies_title">السياسات النشطة</string>
+    <string name="policy_deadline">يُغلق التصويت في %1$s</string>
+    <string name="policy_status_open">مفتوح</string>
+    <string name="policy_status_closed">مغلق</string>
+    <string name="policy_status_tallying">الفرز</string>
+    <string name="policy_status_finalised">نهائي</string>
+    <string name="view_results">عرض النتائج</string>
+    <string name="read_document">قراءة وثيقة السياسة</string>
+    <string name="select_your_vote">اختر تصويتك</string>
+    <string name="submit_vote">إرسال التصويت</string>
+    <string name="signing_vote">جارٍ توقيع تصويتك…</string>
+    <string name="submitting_vote">جارٍ التسجيل على blockchain…</string>
+    <string name="verifying_vote">جارٍ التحقق في السجل…</string>
+    <string name="vote_confirmed">تم تسجيل التصويت</string>
+    <string name="vote_confirmed_desc">تم تسجيل تصويتك بشكل دائم على blockchain. يمكنك التحقق منه في أي وقت باستخدام رقم الإيصال الخاص بك.</string>
+    <string name="transaction_hash">TX: %1$s</string>
+    <string name="vote_receipt">الإيصال</string>
+    <string name="verify_vote">التحقق من تصويتي</string>
+    <string name="option_support">تأييد</string>
+    <string name="option_oppose">معارضة</string>
+    <string name="option_abstain">امتناع</string>
+    <string name="results_title">النتائج</string>
+    <string name="total_votes">إجمالي الأصوات: %1$s</string>
+    <string name="results_pending">ستتوفر النتائج بعد إغلاق التصويت.</string>
+    <string name="official_portal">البوابة الحكومية الرسمية</string>
+    <string name="powered_by">مدعوم من TheVoteApp — مفتوح المصدر، مؤمَّن بالبلوكشين</string>
+</resources>

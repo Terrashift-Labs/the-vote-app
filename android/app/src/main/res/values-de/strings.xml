@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">TheVoteApp</string>
+    <string name="back">Zurück</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Abbrechen</string>
+    <string name="loading">Lädt…</string>
+    <string name="error_title">Fehler</string>
+    <string name="retry">Erneut versuchen</string>
+    <string name="auth_title">Anmelden zum Abstimmen</string>
+    <string name="auth_subtitle">Wählen Sie Ihr Land aus, um fortzufahren</string>
+    <string name="biometric_title">Abstimmung bestätigen</string>
+    <string name="biometric_subtitle">Authentifizieren Sie sich, um Ihre Stimme sicher abzugeben</string>
+    <string name="biometric_failed">Authentifizierung fehlgeschlagen. Bitte erneut versuchen.</string>
+    <string name="fido2_title">Hardware-Schlüssel</string>
+    <string name="fido2_subtitle">Stecken Sie den Sicherheitsschlüssel ein oder tippen Sie ihn an</string>
+    <string name="policies_title">Aktuelle Abstimmungen</string>
+    <string name="policy_deadline">Abstimmung endet am %1$s</string>
+    <string name="policy_status_open">Offen</string>
+    <string name="policy_status_closed">Geschlossen</string>
+    <string name="policy_status_tallying">Auszählung</string>
+    <string name="policy_status_finalised">Abgeschlossen</string>
+    <string name="view_results">Ergebnisse anzeigen</string>
+    <string name="read_document">Dokument lesen</string>
+    <string name="select_your_vote">Stimme auswählen</string>
+    <string name="submit_vote">Stimme abgeben</string>
+    <string name="signing_vote">Stimme wird signiert…</string>
+    <string name="submitting_vote">Wird auf der Blockchain gespeichert…</string>
+    <string name="verifying_vote">Wird im Ledger verifiziert…</string>
+    <string name="vote_confirmed">Stimme gespeichert</string>
+    <string name="vote_confirmed_desc">Ihre Stimme wurde dauerhaft auf der Blockchain gespeichert. Sie können sie jederzeit mit Ihrer Quittung überprüfen.</string>
+    <string name="transaction_hash">TX: %1$s</string>
+    <string name="vote_receipt">Quittung</string>
+    <string name="verify_vote">Meine Stimme verifizieren</string>
+    <string name="option_support">Zustimmung</string>
+    <string name="option_oppose">Ablehnung</string>
+    <string name="option_abstain">Enthaltung</string>
+    <string name="results_title">Ergebnisse</string>
+    <string name="total_votes">Gesamtstimmen: %1$s</string>
+    <string name="results_pending">Ergebnisse sind nach Schließung der Abstimmung verfügbar.</string>
+    <string name="official_portal">Offizielles Regierungsportal</string>
+    <string name="powered_by">Powered by TheVoteApp — open source, blockchain-gesichert</string>
+</resources>

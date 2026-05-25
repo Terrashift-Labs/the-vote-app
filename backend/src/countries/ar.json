@@ -1,0 +1,37 @@
+{
+  "code": "AR",
+  "name": "Argentina",
+  "nativeName": "Argentina",
+  "language": "es",
+  "languages": ["es"],
+  "rtl": false,
+  "identityScheme": "mi-argentina",
+  "flagEmoji": "🇦🇷",
+  "region": "americas",
+  "branding": {
+    "primaryColor": "#74ACDF",
+    "secondaryColor": "#F6B40E",
+    "surfaceColor": "#F5FBFF",
+    "onPrimaryColor": "#FFFFFF",
+    "darkStatusBar": false,
+    "governmentPortalName": "argentina.gob.ar",
+    "governmentPortalURL": "https://www.argentina.gob.ar",
+    "governmentLogoAlt": "Gobierno de la República Argentina",
+    "flagColors": ["#74ACDF", "#FFFFFF", "#F6B40E"]
+  },
+  "policies": [
+    {
+      "id": "ar-estabilizacion-2026",
+      "title": "Plan de Estabilización Económica 2026",
+      "description": "Propuesta para la eliminación del déficit fiscal, reducción de la inflación mediante ancla cambiaria y reformas estructurales del Estado.",
+      "category": "economy",
+      "documentIpfsCID": "",
+      "votingDeadlineISO": "2026-07-09T23:59:59Z",
+      "options": [
+        { "id": "support",  "label": "option.support",  "description": "option.support.desc" },
+        { "id": "oppose",   "label": "option.oppose",   "description": "option.oppose.desc" },
+        { "id": "abstain",  "label": "option.abstain",  "description": "option.abstain.desc" }
+      ]
+    }
+  ]
+}

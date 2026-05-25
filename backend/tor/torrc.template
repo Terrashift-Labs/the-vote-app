@@ -1,0 +1,16 @@
+# TheVoteApp — Tor Hidden Service configuration template
+# Copy to /etc/tor/torrc and restart Tor.
+#
+# This exposes the backend API as a .onion v3 hidden service alongside
+# the public HTTPS endpoint. Tor users can route all traffic on-device
+# to this address — no exit node, full end-to-end encryption.
+
+HiddenServiceDir /var/lib/tor/thevoteapp/
+HiddenServicePort 80 127.0.0.1:3000
+HiddenServiceVersion 3
+
+# The generated .onion address will be in:
+#   /var/lib/tor/thevoteapp/hostname
+#
+# Publish this address in the IPFS gateway manifest alongside the HTTPS URL:
+#   { "endpoints": { "api": "https://api.thevoteapp.org", "onion": "http://<hash>.onion" } }

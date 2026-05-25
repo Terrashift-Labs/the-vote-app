@@ -1,0 +1,38 @@
+{
+  "code": "EG",
+  "name": "Egypt",
+  "nativeName": "مصر",
+  "language": "ar",
+  "languages": ["ar"],
+  "rtl": true,
+  "identityScheme": "nid-egypt",
+  "flagEmoji": "🇪🇬",
+  "region": "africa",
+  "branding": {
+    "primaryColor": "#CE1126",
+    "secondaryColor": "#C09300",
+    "surfaceColor": "#FFF8F0",
+    "onPrimaryColor": "#FFFFFF",
+    "darkStatusBar": true,
+    "governmentPortalName": "egypt.gov.eg",
+    "governmentPortalURL": "https://www.egypt.gov.eg",
+    "governmentLogoAlt": "نسر صلاح الدين — البوابة الرسمية لحكومة مصر",
+    "flagColors": ["#CE1126", "#FFFFFF", "#000000", "#C09300"],
+    "headerFontFamily": "Noto Sans Arabic"
+  },
+  "policies": [
+    {
+      "id": "eg-tahya-masr-2026",
+      "title": "مشروع تحيا مصر للإسكان 2026",
+      "description": "توسيع مشروع الإسكان الاجتماعي لتوفير 500 ألف وحدة سكنية ميسرة للأسر محدودة الدخل.",
+      "category": "economy",
+      "documentIpfsCID": "",
+      "votingDeadlineISO": "2026-07-23T23:59:59Z",
+      "options": [
+        { "id": "support",  "label": "option.support",  "description": "option.support.desc" },
+        { "id": "oppose",   "label": "option.oppose",   "description": "option.oppose.desc" },
+        { "id": "abstain",  "label": "option.abstain",  "description": "option.abstain.desc" }
+      ]
+    }
+  ]
+}

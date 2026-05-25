@@ -1,0 +1,22 @@
+[profile.default]
+src = "contracts"
+out = "out"
+libs = ["node_modules", "lib"]
+test = "test/formal"
+cache_path = "cache_forge"
+solc_version = "0.8.24"
+optimizer = true
+optimizer_runs = 200
+
+remappings = [
+  "@openzeppelin/=node_modules/@openzeppelin/",
+  "forge-std/=lib/forge-std/src/",
+  "halmos-cheatcodes/=lib/halmos-cheatcodes/",
+]
+
+[profile.default.fuzz]
+runs = 256
+
+[profile.halmos]
+# Halmos uses this profile — keep loop unrolling tight to bound symbolic execution
+optimizer = false

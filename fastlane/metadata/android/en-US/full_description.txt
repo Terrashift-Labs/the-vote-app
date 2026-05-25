@@ -1,0 +1,18 @@
+TheVoteApp puts democratic participation in your pocket.
+
+Cast your vote on national policy with cryptographic privacy — your ballot is anonymous, publicly verifiable, and permanently recorded on a tamper-proof blockchain.
+
+KEY FEATURES
+★ Zero-knowledge proofs — eligibility proven without revealing your identity
+★ Government branding — each country's interface reflects its official design system
+★ Hardware security key support — FIDO2 / YubiKey for the strongest authentication
+★ Biometric confirmation — fingerprint or face unlock before every vote
+★ Open-source — Apache 2.0 licensed; audit the code on GitHub
+
+PRIVACY
+• Your vote is encrypted on-device before transmission
+• No names, addresses, or personal data stored or transmitted
+• Private key never leaves the Android Keystore (hardware-backed)
+• Works offline for low-connectivity regions
+
+TheVoteApp is free, non-partisan, and built for every nation on Earth.

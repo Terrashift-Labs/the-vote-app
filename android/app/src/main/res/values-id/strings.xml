@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">TheVoteApp</string>
+    <string name="back">Kembali</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Batal</string>
+    <string name="loading">Memuat…</string>
+    <string name="error_title">Kesalahan</string>
+    <string name="retry">Coba lagi</string>
+    <string name="auth_title">Masuk untuk memilih</string>
+    <string name="auth_subtitle">Pilih negara Anda untuk melanjutkan</string>
+    <string name="biometric_title">Konfirmasi suara Anda</string>
+    <string name="biometric_subtitle">Autentikasi untuk mengirim suara Anda dengan aman</string>
+    <string name="biometric_failed">Autentikasi gagal. Silakan coba lagi.</string>
+    <string name="fido2_title">Kunci perangkat keras</string>
+    <string name="fido2_subtitle">Masukkan atau ketuk kunci keamanan Anda untuk konfirmasi</string>
+    <string name="policies_title">Kebijakan aktif</string>
+    <string name="policy_deadline">Pemungutan suara ditutup %1$s</string>
+    <string name="policy_status_open">Terbuka</string>
+    <string name="policy_status_closed">Ditutup</string>
+    <string name="policy_status_tallying">Penghitungan</string>
+    <string name="policy_status_finalised">Final</string>
+    <string name="view_results">Lihat hasil</string>
+    <string name="read_document">Baca dokumen kebijakan</string>
+    <string name="select_your_vote">Pilih suara Anda</string>
+    <string name="submit_vote">Kirim Suara</string>
+    <string name="signing_vote">Menandatangani suara Anda…</string>
+    <string name="submitting_vote">Merekam di blockchain…</string>
+    <string name="verifying_vote">Memverifikasi di buku besar…</string>
+    <string name="vote_confirmed">Suara Tercatat</string>
+    <string name="vote_confirmed_desc">Suara Anda telah tercatat secara permanen di blockchain. Anda dapat memverifikasinya kapan saja menggunakan tanda terima.</string>
+    <string name="transaction_hash">TX: %1$s</string>
+    <string name="vote_receipt">Tanda Terima</string>
+    <string name="verify_vote">Verifikasi suara saya</string>
+    <string name="option_support">Mendukung</string>
+    <string name="option_oppose">Menentang</string>
+    <string name="option_abstain">Abstain</string>
+    <string name="results_title">Hasil</string>
+    <string name="total_votes">Total suara: %1$s</string>
+    <string name="results_pending">Hasil akan tersedia setelah pemungutan suara ditutup.</string>
+    <string name="official_portal">Portal resmi pemerintah</string>
+    <string name="powered_by">Didukung oleh TheVoteApp — sumber terbuka, diamankan blockchain</string>
+</resources>

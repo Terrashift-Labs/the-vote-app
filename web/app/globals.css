@@ -1,0 +1,49 @@
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --color-primary: #1D70B8;
+  --color-bg: #f3f4f6;
+  --color-surface: #ffffff;
+  --color-text: #111827;
+  --color-muted: #6b7280;
+  --color-border: #e5e7eb;
+  --color-success: #16a34a;
+  --color-danger: #dc2626;
+  --radius: 8px;
+  --shadow: 0 1px 3px rgba(0,0,0,.1);
+}
+
+body { font-family: system-ui, sans-serif; background: var(--color-bg); color: var(--color-text); line-height: 1.6; }
+
+header { background: var(--color-primary); padding: .75rem 1.5rem; }
+header nav { display: flex; gap: 1.5rem; align-items: center; }
+header a { color: #fff; text-decoration: none; font-weight: 600; }
+header a:first-child { font-size: 1.1rem; margin-right: auto; }
+
+main { max-width: 900px; margin: 2rem auto; padding: 0 1rem; }
+footer { text-align: center; padding: 2rem; color: var(--color-muted); font-size: .875rem; }
+footer a { color: var(--color-primary); }
+
+h1 { font-size: 1.75rem; margin-bottom: .5rem; }
+h2 { font-size: 1.25rem; margin-bottom: .75rem; }
+
+.card { background: var(--color-surface); border-radius: var(--radius); box-shadow: var(--shadow); padding: 1.25rem; }
+.badge { display: inline-block; padding: .2rem .6rem; border-radius: 999px; font-size: .75rem; font-weight: 600; }
+.badge-open     { background: #dcfce7; color: #166534; }
+.badge-closed   { background: #fee2e2; color: #991b1b; }
+.badge-tallying { background: #fef9c3; color: #713f12; }
+.badge-final    { background: #ede9fe; color: #4c1d95; }
+
+progress { width: 100%; height: 8px; border-radius: 4px; appearance: none; }
+progress::-webkit-progress-bar { background: var(--color-border); border-radius: 4px; }
+progress::-webkit-progress-value { background: var(--color-primary); border-radius: 4px; }
+
+input, button { font: inherit; }
+input[type="text"] { width: 100%; padding: .6rem .8rem; border: 1px solid var(--color-border); border-radius: var(--radius); }
+button { background: var(--color-primary); color: #fff; border: none; padding: .6rem 1.25rem; border-radius: var(--radius); cursor: pointer; font-weight: 600; }
+button:hover { opacity: .9; }
+
+table { width: 100%; border-collapse: collapse; }
+th, td { padding: .6rem .8rem; text-align: left; border-bottom: 1px solid var(--color-border); font-size: .9rem; }
+th { font-weight: 600; color: var(--color-muted); }
+.mono { font-family: monospace; font-size: .85rem; word-break: break-all; }

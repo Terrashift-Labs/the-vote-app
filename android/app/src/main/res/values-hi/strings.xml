@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">TheVoteApp</string>
+    <string name="back">वापस</string>
+    <string name="ok">ठीक है</string>
+    <string name="cancel">रद्द करें</string>
+    <string name="loading">लोड हो रहा है…</string>
+    <string name="error_title">त्रुटि</string>
+    <string name="retry">पुनः प्रयास करें</string>
+    <string name="auth_title">मतदान के लिए साइन इन करें</string>
+    <string name="auth_subtitle">जारी रखने के लिए अपना देश चुनें</string>
+    <string name="biometric_title">अपना मत पुष्टि करें</string>
+    <string name="biometric_subtitle">अपना मत सुरक्षित रूप से सबमिट करने के लिए प्रमाणित करें</string>
+    <string name="biometric_failed">प्रमाणीकरण विफल। कृपया पुनः प्रयास करें।</string>
+    <string name="fido2_title">हार्डवेयर कुंजी</string>
+    <string name="fido2_subtitle">पुष्टि के लिए अपनी सुरक्षा कुंजी डालें या टैप करें</string>
+    <string name="policies_title">सक्रिय नीतियाँ</string>
+    <string name="policy_deadline">मतदान %1$s को बंद होता है</string>
+    <string name="policy_status_open">खुला</string>
+    <string name="policy_status_closed">बंद</string>
+    <string name="policy_status_tallying">मतगणना</string>
+    <string name="policy_status_finalised">अंतिम</string>
+    <string name="view_results">परिणाम देखें</string>
+    <string name="read_document">दस्तावेज़ पढ़ें</string>
+    <string name="select_your_vote">अपना मत चुनें</string>
+    <string name="submit_vote">मत सबमिट करें</string>
+    <string name="signing_vote">आपका मत हस्ताक्षरित हो रहा है…</string>
+    <string name="submitting_vote">ब्लॉकचेन पर दर्ज हो रहा है…</string>
+    <string name="verifying_vote">लेजर में सत्यापित हो रहा है…</string>
+    <string name="vote_confirmed">मत दर्ज हुआ</string>
+    <string name="vote_confirmed_desc">आपका मत ब्लॉकचेन पर स्थायी रूप से दर्ज हो गया है। आप इसे कभी भी अपनी रसीद से सत्यापित कर सकते हैं।</string>
+    <string name="transaction_hash">TX: %1$s</string>
+    <string name="vote_receipt">रसीद</string>
+    <string name="verify_vote">मेरा मत सत्यापित करें</string>
+    <string name="option_support">समर्थन</string>
+    <string name="option_oppose">विरोध</string>
+    <string name="option_abstain">मतविरत</string>
+    <string name="results_title">परिणाम</string>
+    <string name="total_votes">कुल मत: %1$s</string>
+    <string name="results_pending">मतदान बंद होने के बाद परिणाम उपलब्ध होंगे।</string>
+    <string name="official_portal">आधिकारिक सरकारी पोर्टल</string>
+    <string name="powered_by">TheVoteApp द्वारा संचालित — ओपन सोर्स, ब्लॉकचेन सुरक्षित</string>
+</resources>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">TheVoteApp</string>
+    <string name="back">Quay lại</string>
+    <string name="ok">Đồng ý</string>
+    <string name="cancel">Hủy</string>
+    <string name="loading">Đang tải…</string>
+    <string name="error_title">Lỗi</string>
+    <string name="retry">Thử lại</string>
+    <string name="auth_title">Đăng nhập để bỏ phiếu</string>
+    <string name="auth_subtitle">Chọn quốc gia của bạn để tiếp tục</string>
+    <string name="biometric_title">Xác nhận phiếu bầu</string>
+    <string name="biometric_subtitle">Xác thực để gửi phiếu bầu an toàn</string>
+    <string name="biometric_failed">Xác thực thất bại. Vui lòng thử lại.</string>
+    <string name="fido2_title">Khóa phần cứng</string>
+    <string name="fido2_subtitle">Cắm hoặc chạm vào khóa bảo mật để xác nhận</string>
+    <string name="policies_title">Chính sách đang hoạt động</string>
+    <string name="policy_deadline">Bỏ phiếu kết thúc lúc %1$s</string>
+    <string name="policy_status_open">Đang mở</string>
+    <string name="policy_status_closed">Đã đóng</string>
+    <string name="policy_status_tallying">Đang kiểm phiếu</string>
+    <string name="policy_status_finalised">Đã hoàn tất</string>
+    <string name="view_results">Xem kết quả</string>
+    <string name="read_document">Đọc tài liệu chính sách</string>
+    <string name="select_your_vote">Chọn phiếu bầu của bạn</string>
+    <string name="submit_vote">Gửi phiếu bầu</string>
+    <string name="signing_vote">Đang ký phiếu bầu…</string>
+    <string name="submitting_vote">Đang ghi lên blockchain…</string>
+    <string name="verifying_vote">Đang xác minh trên sổ cái…</string>
+    <string name="vote_confirmed">Phiếu bầu đã được ghi nhận</string>
+    <string name="vote_confirmed_desc">Phiếu bầu của bạn đã được ghi lại vĩnh viễn trên blockchain. Bạn có thể xác minh bất cứ lúc nào bằng mã biên lai.</string>
+    <string name="transaction_hash">TX: %1$s</string>
+    <string name="vote_receipt">Biên lai</string>
+    <string name="verify_vote">Xác minh phiếu bầu của tôi</string>
+    <string name="option_support">Ủng hộ</string>
+    <string name="option_oppose">Phản đối</string>
+    <string name="option_abstain">Trắng phiếu</string>
+    <string name="results_title">Kết quả</string>
+    <string name="total_votes">Tổng số phiếu: %1$s</string>
+    <string name="results_pending">Kết quả sẽ có sau khi bỏ phiếu kết thúc.</string>
+    <string name="official_portal">Cổng thông tin chính phủ chính thức</string>
+    <string name="powered_by">Được hỗ trợ bởi TheVoteApp — mã nguồn mở, bảo mật blockchain</string>
+</resources>

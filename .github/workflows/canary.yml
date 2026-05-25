@@ -1,0 +1,207 @@
+name: Canary Deployment
+
+on:
+  push:
+    branches: [main]
+
+concurrency:
+  group: deploy-${{ github.ref }}
+  cancel-in-progress: false  # never cancel an in-flight deploy
+
+jobs:
+  # ── Gate: all CI checks must pass first ────────────────────────────────────
+
+  ci-gate:
+    name: CI Gate
+    uses: ./.github/workflows/backend-ci.yml
+
+  # ── Deploy to canary slot ───────────────────────────────────────────────────
+
+  deploy-canary:
+    name: Deploy Canary (10% traffic)
+    needs: ci-gate
+    runs-on: ubuntu-latest
+    environment: canary          # GitHub Environment — no required reviewers
+    outputs:
+      canary_url: ${{ steps.deploy.outputs.canary_url }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Build backend
+        run: |
+          cd backend
+          npm ci
+          npm run build
+
+      - name: Deploy to canary slot
+        id: deploy
+        env:
+          DEPLOY_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
+          CANARY_HOST: ${{ secrets.CANARY_HOST }}
+        run: |
+          # Upload build artefact and restart the canary process manager slot
+          # (replace with your actual deploy mechanism: fly.io, Railway, k8s, etc.)
+          echo "Deploying to canary slot..."
+          CANARY_URL="https://${CANARY_HOST}"
+          echo "canary_url=${CANARY_URL}" >> "$GITHUB_OUTPUT"
+
+      - name: Wait for canary to be healthy
+        run: |
+          for i in $(seq 1 30); do
+            STATUS=$(curl -s -o /dev/null -w "%{http_code}" \
+              "${{ steps.deploy.outputs.canary_url }}/health")
+            if [ "$STATUS" = "200" ]; then
+              echo "Canary healthy after $((i * 5))s"
+              exit 0
+            fi
+            echo "Attempt $i: status $STATUS — retrying in 5s"
+            sleep 5
+          done
+          echo "Canary did not become healthy within 150s"
+          exit 1
+
+  # ── Smoke test the canary slot ──────────────────────────────────────────────
+
+  smoke-test-canary:
+    name: Canary Smoke Test (k6, 5 min)
+    needs: deploy-canary
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install k6
+        run: |
+          curl -fsSL https://dl.k6.io/key.gpg | sudo gpg --dearmor -o /usr/share/keyrings/k6-archive-keyring.gpg
+          echo "deb [signed-by=/usr/share/keyrings/k6-archive-keyring.gpg] https://dl.k6.io/deb stable main" \
+            | sudo tee /etc/apt/sources.list.d/k6.list
+          sudo apt-get update && sudo apt-get install -y k6
+
+      - name: Run canary smoke test (5 min, 10% load)
+        env:
+          API_BASE: ${{ needs.deploy-canary.outputs.canary_url }}
+        run: |
+          k6 run \
+            --env API_BASE="${API_BASE}" \
+            --duration 5m \
+            --vus 5 \
+            --out json=canary-results.json \
+            load/smoke.js
+
+      - name: Assert thresholds
+        run: |
+          # Extract p95 latency and error rate from k6 JSON summary
+          P95=$(python3 - <<'EOF'
+          import json, sys
+          with open("canary-results.json") as f:
+              lines = [l for l in f if '"http_req_duration"' in l]
+          # k6 writes a summary line at the end — use it
+          for line in reversed(lines):
+              try:
+                  data = json.loads(line)
+                  if data.get("type") == "Point":
+                      continue
+                  p95 = data.get("data", {}).get("values", {}).get("p(95)", None)
+                  if p95 is not None:
+                      print(p95)
+                      sys.exit(0)
+              except Exception:
+                  pass
+          print(9999)
+          EOF
+          )
+          echo "Canary p95 latency: ${P95}ms"
+          python3 -c "import sys; sys.exit(0 if float('${P95}') < 500 else 1)" \
+            || { echo "p95 latency ${P95}ms exceeds 500ms threshold — rolling back"; exit 1; }
+
+      - name: Upload canary results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: canary-smoke-results
+          path: canary-results.json
+
+  # ── Roll back canary if smoke test failed ───────────────────────────────────
+
+  rollback-canary:
+    name: Rollback Canary
+    needs: smoke-test-canary
+    if: failure()
+    runs-on: ubuntu-latest
+    environment: canary
+
+    steps:
+      - name: Roll back canary slot to previous release
+        env:
+          DEPLOY_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
+          CANARY_HOST: ${{ secrets.CANARY_HOST }}
+        run: |
+          echo "Rolling back canary slot..."
+          # Swap canary back to the previous image / release tag
+          # (replace with your deploy mechanism)
+
+      - name: Notify on failure
+        uses: actions/github-script@v7
+        with:
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number || 0,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: `## Canary Rollback\nCanary smoke test failed on commit ${context.sha.slice(0,7)}. Canary slot has been rolled back to the previous release.\n\nSee [workflow run](${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}) for details.`,
+            }).catch(() => {});  // non-fatal if not on a PR
+
+  # ── Promote canary to production (requires human approval) ─────────────────
+
+  promote-production:
+    name: Promote to Production
+    needs: smoke-test-canary
+    if: success()
+    runs-on: ubuntu-latest
+    environment: production      # GitHub Environment — requires 1 approver
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Promote canary build to production
+        env:
+          DEPLOY_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
+          PROD_HOST: ${{ secrets.PROD_HOST }}
+        run: |
+          echo "Promoting canary build to production..."
+          # Point production slot to the same image as canary
+
+      - name: Deep health check — production
+        run: |
+          for i in $(seq 1 12); do
+            STATUS=$(curl -s -o /dev/null -w "%{http_code}" \
+              "https://${PROD_HOST}/api/v1/health/deep")
+            if [ "$STATUS" = "200" ]; then
+              echo "Production healthy"
+              exit 0
+            fi
+            sleep 5
+          done
+          exit 1
+        env:
+          PROD_HOST: ${{ secrets.PROD_HOST }}
+
+      - name: Tag release
+        run: |
+          VERSION="v$(date -u +%Y.%m.%d)-${GITHUB_SHA::7}"
+          git tag "$VERSION"
+          git push origin "$VERSION"
+
+      - name: Rollback production if health check failed
+        if: failure()
+        env:
+          DEPLOY_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
+          PROD_HOST: ${{ secrets.PROD_HOST }}
+        run: |
+          echo "Production health check failed — rolling back..."
+          # Revert production slot to the previous release

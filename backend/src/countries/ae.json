@@ -1,0 +1,38 @@
+{
+  "code": "AE",
+  "name": "United Arab Emirates",
+  "nativeName": "الإمارات العربية المتحدة",
+  "language": "ar",
+  "languages": ["ar", "en"],
+  "rtl": true,
+  "identityScheme": "uae-pass",
+  "flagEmoji": "🇦🇪",
+  "region": "middle-east",
+  "branding": {
+    "primaryColor": "#00732F",
+    "secondaryColor": "#FF0000",
+    "surfaceColor": "#F5FFF8",
+    "onPrimaryColor": "#FFFFFF",
+    "darkStatusBar": true,
+    "governmentPortalName": "u.ae",
+    "governmentPortalURL": "https://u.ae",
+    "governmentLogoAlt": "UAE PASS — بوابة الحكومة الإماراتية",
+    "flagColors": ["#00732F", "#FFFFFF", "#000000", "#FF0000"],
+    "headerFontFamily": "Noto Sans Arabic"
+  },
+  "policies": [
+    {
+      "id": "ae-ai-strategy-2026",
+      "title": "استراتيجية الإمارات للذكاء الاصطناعي 2026",
+      "description": "تحديث الاستراتيجية الوطنية للذكاء الاصطناعي لتشمل تنظيم النماذج التوليدية وتوطين البنية التحتية الرقمية.",
+      "category": "infrastructure",
+      "documentIpfsCID": "",
+      "votingDeadlineISO": "2026-12-02T23:59:59Z",
+      "options": [
+        { "id": "support",  "label": "option.support",  "description": "option.support.desc" },
+        { "id": "oppose",   "label": "option.oppose",   "description": "option.oppose.desc" },
+        { "id": "abstain",  "label": "option.abstain",  "description": "option.abstain.desc" }
+      ]
+    }
+  ]
+}

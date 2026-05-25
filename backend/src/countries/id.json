@@ -1,0 +1,37 @@
+{
+  "code": "ID",
+  "name": "Indonesia",
+  "nativeName": "Indonesia",
+  "language": "id",
+  "languages": ["id"],
+  "rtl": false,
+  "identityScheme": "nik-ktp",
+  "flagEmoji": "🇮🇩",
+  "region": "asia",
+  "branding": {
+    "primaryColor": "#CE1126",
+    "secondaryColor": "#1A1A1A",
+    "surfaceColor": "#FFF5F5",
+    "onPrimaryColor": "#FFFFFF",
+    "darkStatusBar": true,
+    "governmentPortalName": "indonesia.go.id",
+    "governmentPortalURL": "https://www.indonesia.go.id",
+    "governmentLogoAlt": "Garuda Pancasila — Lambang Negara Republik Indonesia",
+    "flagColors": ["#CE1126", "#FFFFFF"]
+  },
+  "policies": [
+    {
+      "id": "id-tapera-2026",
+      "title": "Program Tapera Nasional 2026",
+      "description": "Kebijakan tabungan perumahan rakyat untuk membantu 10 juta keluarga berpenghasilan rendah memiliki rumah layak.",
+      "category": "economy",
+      "documentIpfsCID": "",
+      "votingDeadlineISO": "2026-08-17T23:59:59Z",
+      "options": [
+        { "id": "support",  "label": "option.support",  "description": "option.support.desc" },
+        { "id": "oppose",   "label": "option.oppose",   "description": "option.oppose.desc" },
+        { "id": "abstain",  "label": "option.abstain",  "description": "option.abstain.desc" }
+      ]
+    }
+  ]
+}

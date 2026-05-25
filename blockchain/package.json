@@ -1,0 +1,29 @@
+{
+  "name": "TheVoteApp-blockchain",
+  "version": "1.0.0",
+  "description": "TheVoteApp smart contracts — tamper-proof blockchain vote ledger",
+  "private": true,
+  "scripts": {
+    "compile": "hardhat compile",
+    "test": "hardhat test",
+    "coverage": "hardhat coverage",
+    "lint": "solhint 'contracts/**/*.sol'",
+    "deploy:local": "hardhat run scripts/deploy.ts --network localhost",
+    "deploy:testnet": "hardhat run scripts/deploy.ts --network sepolia",
+    "deploy:mainnet": "hardhat run scripts/deploy.ts --network mainnet",
+    "verify": "hardhat verify",
+    "node": "hardhat node",
+    "verify:formal": "halmos --config halmos.toml --solver z3"
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^5.0.0",
+    "@openzeppelin/contracts": "^5.0.2",
+    "@openzeppelin/contracts-upgradeable": "^5.0.2",
+    "hardhat": "^2.22.4",
+    "solhint": "^5.0.1",
+    "typescript": "^5.4.5"
+  },
+  "dependencies": {
+    "snarkjs": "^0.7.4"
+  }
+}

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- App -->
+    <string name="app_name">TheVoteApp</string>
+    <string name="back">Back</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
+    <string name="loading">Loading…</string>
+    <string name="error_title">Error</string>
+    <string name="retry">Retry</string>
+
+    <!-- Authentication -->
+    <string name="auth_title">Sign in to vote</string>
+    <string name="auth_subtitle">Choose your country to continue</string>
+    <string name="biometric_title">Confirm your vote</string>
+    <string name="biometric_subtitle">Authenticate to submit your vote securely</string>
+    <string name="biometric_failed">Authentication failed. Please try again.</string>
+    <string name="fido2_title">Hardware key</string>
+    <string name="fido2_subtitle">Insert or tap your security key to confirm</string>
+
+    <!-- Policies -->
+    <string name="policies_title">Active Policies</string>
+    <string name="policy_deadline">Voting closes %1$s</string>
+    <string name="policy_status_open">Open</string>
+    <string name="policy_status_closed">Closed</string>
+    <string name="policy_status_tallying">Tallying</string>
+    <string name="policy_status_finalised">Finalised</string>
+    <string name="view_results">View results</string>
+    <string name="read_document">Read policy document</string>
+
+    <!-- Vote -->
+    <string name="select_your_vote">Select your vote</string>
+    <string name="submit_vote">Submit Vote</string>
+    <string name="signing_vote">Signing your vote…</string>
+    <string name="submitting_vote">Recording on blockchain…</string>
+    <string name="verifying_vote">Verifying on ledger…</string>
+    <string name="vote_confirmed">Vote Recorded</string>
+    <string name="vote_confirmed_desc">Your vote has been permanently recorded on the blockchain. You can verify it using your receipt nullifier at any time.</string>
+    <string name="transaction_hash">TX: %1$s</string>
+    <string name="vote_receipt">Receipt</string>
+    <string name="verify_vote">Verify my vote</string>
+
+    <!-- Vote options (generic) -->
+    <string name="option_support">Support</string>
+    <string name="option_oppose">Oppose</string>
+    <string name="option_abstain">Abstain</string>
+
+    <!-- Results -->
+    <string name="results_title">Results</string>
+    <string name="total_votes">Total votes: %1$s</string>
+    <string name="results_pending">Results will be available once the poll closes.</string>
+
+    <!-- Government branding -->
+    <string name="official_portal">Official government portal</string>
+    <string name="powered_by">Powered by TheVoteApp — open source, blockchain secured</string>
+</resources>

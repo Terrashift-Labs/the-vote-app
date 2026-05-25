@@ -1,0 +1,158 @@
+version: "3.9"
+
+# ──────────────────────────────────────────────────────────────────────────────
+# TheVoteApp — Local Development Environment
+#
+# Services:
+#   hardhat      Local Ethereum node (http://localhost:8545, chainId 31337)
+#   backend      Node.js REST + WebSocket API  (http://localhost:3000)
+#   redis        Session store                  (localhost:6379)
+#   ipfs         IPFS Kubo node                (http://localhost:5001 API,
+#                                               http://localhost:8080 gateway)
+#   prometheus   Metrics scraper               (http://localhost:9090)
+#   grafana      Dashboards                    (http://localhost:3001)
+#
+# Quick start:
+#   make dev      ← builds + starts everything
+#   make logs     ← tail all logs
+#   make down     ← stop and remove containers
+# ──────────────────────────────────────────────────────────────────────────────
+
+services:
+
+  # ── Local blockchain node ──────────────────────────────────────────────────
+
+  hardhat:
+    image: node:20-alpine
+    working_dir: /app/blockchain
+    command: >
+      sh -c "npm ci --silent && npx hardhat node --hostname 0.0.0.0"
+    volumes:
+      - ./blockchain:/app/blockchain
+      - hardhat_node_modules:/app/blockchain/node_modules
+    ports:
+      - "8545:8545"
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:8545"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  # ── Contract deployer (runs once after hardhat is ready) ──────────────────
+
+  deployer:
+    image: node:20-alpine
+    working_dir: /app/blockchain
+    command: >
+      sh -c "npm ci --silent && npx hardhat run scripts/deploy.ts --network localhost"
+    volumes:
+      - ./blockchain:/app/blockchain
+      - hardhat_node_modules:/app/blockchain/node_modules
+    depends_on:
+      hardhat:
+        condition: service_healthy
+    environment:
+      HARDHAT_NETWORK: localhost
+
+  # ── Redis ─────────────────────────────────────────────────────────────────
+
+  redis:
+    image: redis:7-alpine
+    command: redis-server --save "" --appendonly no
+    ports:
+      - "6379:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+
+  # ── IPFS Kubo ─────────────────────────────────────────────────────────────
+
+  ipfs:
+    image: ipfs/kubo:v0.27.0
+    environment:
+      IPFS_PROFILE: test
+    ports:
+      - "4001:4001"   # swarm
+      - "5001:5001"   # API
+      - "8080:8080"   # gateway
+    volumes:
+      - ipfs_data:/data/ipfs
+    healthcheck:
+      test: ["CMD", "ipfs", "id"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # ── Backend API ──────────────────────────────────────────────────────────
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.dev
+    ports:
+      - "3000:3000"
+    environment:
+      NODE_ENV: development
+      PORT: 3000
+      REDIS_URL: redis://redis:6379
+      RPC_URL: http://hardhat:8545
+      IPFS_API_URL: http://ipfs:5001
+      CORS_ORIGIN: http://localhost:3002
+      RP_ID: localhost
+      ORIGIN: http://localhost:3002
+      LOG_LEVEL: debug
+    volumes:
+      - ./backend/src:/app/src
+      - ./backend/.env:/app/.env
+    depends_on:
+      redis:
+        condition: service_healthy
+      hardhat:
+        condition: service_healthy
+      ipfs:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:3000/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # ── Prometheus ───────────────────────────────────────────────────────────
+
+  prometheus:
+    image: prom/prometheus:v2.51.2
+    command:
+      - --config.file=/etc/prometheus/prometheus.yml
+      - --storage.tsdb.retention.time=7d
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./observability/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - prometheus_data:/prometheus
+    depends_on:
+      - backend
+
+  # ── Grafana ───────────────────────────────────────────────────────────────
+
+  grafana:
+    image: grafana/grafana:10.4.0
+    ports:
+      - "3001:3000"
+    environment:
+      GF_SECURITY_ADMIN_PASSWORD: admin
+      GF_USERS_ALLOW_SIGN_UP: "false"
+      GF_DASHBOARDS_DEFAULT_HOME_DASHBOARD_PATH: /etc/grafana/dashboards/thevoteapp.json
+    volumes:
+      - ./observability/grafana/provisioning:/etc/grafana/provisioning:ro
+      - ./observability/grafana/dashboards:/etc/grafana/dashboards:ro
+      - grafana_data:/var/lib/grafana
+    depends_on:
+      - prometheus
+
+volumes:
+  hardhat_node_modules:
+  ipfs_data:
+  prometheus_data:
+  grafana_data:

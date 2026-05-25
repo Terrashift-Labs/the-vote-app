@@ -1,0 +1,37 @@
+{
+  "code": "ES",
+  "name": "Spain",
+  "nativeName": "España",
+  "language": "es",
+  "languages": ["es", "ca", "gl", "eu"],
+  "rtl": false,
+  "identityScheme": "cl@ve",
+  "flagEmoji": "🇪🇸",
+  "region": "europe",
+  "branding": {
+    "primaryColor": "#AA151B",
+    "secondaryColor": "#F1BF00",
+    "surfaceColor": "#FFFBF0",
+    "onPrimaryColor": "#FFFFFF",
+    "darkStatusBar": true,
+    "governmentPortalName": "administracion.gob.es",
+    "governmentPortalURL": "https://administracion.gob.es",
+    "governmentLogoAlt": "Portal de la Administración General del Estado",
+    "flagColors": ["#AA151B", "#F1BF00"]
+  },
+  "policies": [
+    {
+      "id": "es-vivienda-2026",
+      "title": "Ley de Vivienda Asequible 2026",
+      "description": "Regulación del alquiler en zonas tensionadas, aumento del parque público de vivienda y ayudas al alquiler para jóvenes menores de 35 años.",
+      "category": "economy",
+      "documentIpfsCID": "",
+      "votingDeadlineISO": "2026-10-12T23:59:59Z",
+      "options": [
+        { "id": "support",  "label": "option.support",  "description": "option.support.desc" },
+        { "id": "oppose",   "label": "option.oppose",   "description": "option.oppose.desc" },
+        { "id": "abstain",  "label": "option.abstain",  "description": "option.abstain.desc" }
+      ]
+    }
+  ]
+}

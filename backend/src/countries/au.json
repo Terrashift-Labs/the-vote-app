@@ -1,0 +1,51 @@
+{
+  "code": "AU",
+  "name": "Australia",
+  "nativeName": "Australia",
+  "language": "en",
+  "languages": ["en"],
+  "rtl": false,
+  "identityScheme": "myid-au",
+  "flagEmoji": "🇦🇺",
+  "region": "oceania",
+  "branding": {
+    "primaryColor": "#00539F",
+    "secondaryColor": "#FFCD00",
+    "surfaceColor": "#F0F6FF",
+    "onPrimaryColor": "#FFFFFF",
+    "darkStatusBar": true,
+    "governmentPortalName": "australia.gov.au",
+    "governmentPortalURL": "https://www.australia.gov.au",
+    "governmentLogoAlt": "Australian Government Coat of Arms",
+    "flagColors": ["#00008B", "#CC0001", "#FFFFFF"],
+    "headerFontFamily": "Public Sans"
+  },
+  "policies": [
+    {
+      "id": "au-housing-2026",
+      "title": "National Housing Affordability Plan 2026",
+      "description": "Federal plan to build 1.2 million homes by 2030, reform negative gearing, and expand the National Rental Affordability Scheme.",
+      "category": "economy",
+      "documentIpfsCID": "",
+      "votingDeadlineISO": "2026-12-01T23:59:59Z",
+      "options": [
+        { "id": "support",  "label": "option.support",  "description": "option.support.desc" },
+        { "id": "oppose",   "label": "option.oppose",   "description": "option.oppose.desc" },
+        { "id": "abstain",  "label": "option.abstain",  "description": "option.abstain.desc" }
+      ]
+    },
+    {
+      "id": "au-climate-2026",
+      "title": "Climate Action and Net Zero 2026",
+      "description": "Legislation to enshrine 43% emissions reduction by 2030 and net zero by 2050, with mechanisms for Carbon Border Adjustment.",
+      "category": "environment",
+      "documentIpfsCID": "",
+      "votingDeadlineISO": "2026-12-01T23:59:59Z",
+      "options": [
+        { "id": "support",  "label": "option.support",  "description": "option.support.desc" },
+        { "id": "oppose",   "label": "option.oppose",   "description": "option.oppose.desc" },
+        { "id": "abstain",  "label": "option.abstain",  "description": "option.abstain.desc" }
+      ]
+    }
+  ]
+}

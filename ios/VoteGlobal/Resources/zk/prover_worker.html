@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head><meta charset="utf-8"></head>
+<body>
+<script src="snarkjs.min.js"></script>
+<script>
+/**
+ * ZK Prover Worker — runs inside a hidden WKWebView.
+ *
+ * Receives a JSON string via window.receiveMessage(json) and responds
+ * via window.webkit.messageHandlers.ProverCallback.postMessage(json).
+ *
+ * Input:  { type: "prove", inputs: { nullifier, secret, merkleRoot, merklePath, policyId } }
+ * Output: { proof: { pi_a, pi_b, pi_c }, publicSignals }
+ *      or { error: "message" }
+ */
+window.receiveMessage = async function(json) {
+  try {
+    const msg = JSON.parse(json);
+    if (msg.type !== 'prove') return;
+
+    const { inputs } = msg;
+
+    const [wasmResp, zkeyResp] = await Promise.all([
+      fetch('vote_eligibility.wasm'),
+      fetch('vote_eligibility_final.zkey')
+    ]);
+    const wasmBuffer = await wasmResp.arrayBuffer();
+    const zkeyBuffer = await zkeyResp.arrayBuffer();
+
+    const { proof, publicSignals } = await snarkjs.groth16.fullProve(
+      inputs,
+      new Uint8Array(wasmBuffer),
+      new Uint8Array(zkeyBuffer)
+    );
+
+    window.webkit.messageHandlers.ProverCallback.postMessage(
+      JSON.stringify({ proof, publicSignals })
+    );
+  } catch (e) {
+    window.webkit.messageHandlers.ProverCallback.postMessage(
+      JSON.stringify({ error: e.message || String(e) })
+    );
+  }
+};
+</script>
+</body>
+</html>

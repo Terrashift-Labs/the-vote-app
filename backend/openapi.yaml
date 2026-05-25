@@ -1,0 +1,541 @@
+openapi: "3.1.0"
+info:
+  title: TheVoteApp API
+  version: "1.0.0"
+  description: |
+    REST + WebSocket API for TheVoteApp — a free, open-source, blockchain-secured
+    democratic voting platform.
+
+    **Base URL:** `https://api.thevoteapp.org`
+
+    **Authentication:** Most endpoints are public. Admin endpoints require a
+    `Bearer <token>` in the `Authorization` header.
+
+    **WebSocket:** Connect to `wss://api.thevoteapp.org/ws/tally` for live vote updates.
+  contact:
+    name: TheVoteApp Community
+    url: https://github.com/TheVoteApp/the-vote-app
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+
+servers:
+  - url: https://api.thevoteapp.org
+    description: Production
+  - url: http://localhost:3000
+    description: Local development
+
+tags:
+  - name: Health
+  - name: Vote
+  - name: Policy
+  - name: Identity
+  - name: Governance
+  - name: Audit
+  - name: Notifications
+  - name: Certification
+  - name: FIDO2
+  - name: SMS
+  - name: USSD
+  - name: IPFS
+
+paths:
+
+  # ── Health ──────────────────────────────────────────────────────────────────
+
+  /health:
+    get:
+      tags: [Health]
+      summary: Liveness check
+      responses:
+        "200":
+          description: Service is alive
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status: { type: string, example: ok }
+
+  /api/v1/health/deep:
+    get:
+      tags: [Health]
+      summary: Deep readiness check (blockchain + IPFS + Redis)
+      responses:
+        "200":
+          description: All dependencies healthy
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/DeepHealth" }
+        "503":
+          description: One or more dependencies degraded
+
+  # ── Vote ────────────────────────────────────────────────────────────────────
+
+  /api/v1/vote/{policyId}:
+    post:
+      tags: [Vote]
+      summary: Cast an anonymous vote
+      parameters:
+        - { name: policyId, in: path, required: true, schema: { type: string } }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/CastVoteRequest" }
+      responses:
+        "201":
+          description: Vote recorded on-chain
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/CastVoteResponse" }
+        "400": { $ref: "#/components/responses/BadRequest" }
+        "429": { $ref: "#/components/responses/RateLimited" }
+
+  /api/v1/policy/{policyId}/results:
+    get:
+      tags: [Vote]
+      summary: Get anonymised vote tally for a policy
+      parameters:
+        - { name: policyId, in: path, required: true, schema: { type: string } }
+        - { name: countryCode, in: query, schema: { type: string, pattern: "^[A-Z]{2}$" } }
+      responses:
+        "200":
+          description: Anonymised tally (suppressed if fewer than k votes)
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/AnonymisedTally" }
+
+  # ── Identity ────────────────────────────────────────────────────────────────
+
+  /api/v1/identity/adapters:
+    get:
+      tags: [Identity]
+      summary: List available identity providers for this deployment
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  adapters: { type: array, items: { type: string } }
+
+  /api/v1/identity/verify:
+    post:
+      tags: [Identity]
+      summary: Verify a national identity token and derive a commitment
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/IdentityVerifyRequest" }
+      responses:
+        "200":
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/IdentityVerifyResponse" }
+        "401": { $ref: "#/components/responses/Unauthorized" }
+
+  /api/v1/identity/register:
+    post:
+      tags: [Identity]
+      summary: Self-service voter registration — verify identity and register on-chain
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/IdentityVerifyRequest" }
+      responses:
+        "201":
+          description: Registered successfully
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/IdentityRegisterResponse" }
+        "200":
+          description: Already registered (idempotent)
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/IdentityRegisterResponse" }
+        "400": { $ref: "#/components/responses/BadRequest" }
+
+  # ── Governance ──────────────────────────────────────────────────────────────
+
+  /api/v1/governance/proposals:
+    get:
+      tags: [Governance]
+      summary: List all DAO governance proposals
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  proposals: { type: array, items: { $ref: "#/components/schemas/Proposal" } }
+
+    post:
+      tags: [Governance]
+      summary: Create a new governance proposal (requires proposer role)
+      security: [{ bearerAuth: [] }]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/ProposeRequest" }
+      responses:
+        "201":
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/TxResponse" }
+
+  /api/v1/governance/proposals/{proposalId}:
+    get:
+      tags: [Governance]
+      summary: Get a single proposal
+      parameters:
+        - { name: proposalId, in: path, required: true, schema: { type: string } }
+      responses:
+        "200":
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/Proposal" }
+        "404": { $ref: "#/components/responses/NotFound" }
+
+  /api/v1/governance/proposals/{proposalId}/vote:
+    post:
+      tags: [Governance]
+      summary: Cast a governance vote (For / Against / Abstain)
+      parameters:
+        - { name: proposalId, in: path, required: true, schema: { type: string } }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                support: { type: integer, enum: [0, 1, 2], description: "0=Against 1=For 2=Abstain" }
+      responses:
+        "200":
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/TxResponse" }
+
+  # ── Audit ────────────────────────────────────────────────────────────────────
+
+  /api/v1/audit:
+    get:
+      tags: [Audit]
+      summary: Paginated audit log of admin actions
+      parameters:
+        - { name: page,  in: query, schema: { type: integer, default: 1 } }
+        - { name: limit, in: query, schema: { type: integer, default: 20 } }
+      responses:
+        "200":
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/AuditPage" }
+
+  /api/v1/audit/{entryId}/verify:
+    get:
+      tags: [Audit]
+      summary: Verify an audit log entry signature
+      parameters:
+        - { name: entryId, in: path, required: true, schema: { type: string } }
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  valid:   { type: boolean }
+                  entryId: { type: string }
+
+  # ── Notifications ────────────────────────────────────────────────────────────
+
+  /api/v1/notifications/register:
+    post:
+      tags: [Notifications]
+      summary: Register a device push token
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/NotificationRegister" }
+      responses:
+        "204": { description: Token registered }
+
+  /api/v1/notifications/register/{userId}:
+    delete:
+      tags: [Notifications]
+      summary: Unregister a device push token
+      parameters:
+        - { name: userId, in: path, required: true, schema: { type: string } }
+      responses:
+        "204": { description: Token removed }
+
+  # ── Certification ────────────────────────────────────────────────────────────
+
+  /api/v1/certification/{pollId}:
+    post:
+      tags: [Certification]
+      summary: Generate and pin a signed PDF election result certificate
+      security: [{ bearerAuth: [] }]
+      parameters:
+        - { name: pollId, in: path, required: true, schema: { type: string } }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/CertifyRequest" }
+      responses:
+        "201":
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/CertifyResponse" }
+
+  /api/v1/certification/{pollId}/verify:
+    get:
+      tags: [Certification]
+      summary: Verify a certificate's ECDSA signature
+      parameters:
+        - { name: pollId,    in: path,  required: true, schema: { type: string } }
+        - { name: cid,       in: query, required: true, schema: { type: string } }
+        - { name: signature, in: query, required: true, schema: { type: string } }
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  valid: { type: boolean }
+                  cid:   { type: string }
+
+  # ── FIDO2 ────────────────────────────────────────────────────────────────────
+
+  /api/v1/fido2/register/options:
+    post:
+      tags: [FIDO2]
+      summary: Get WebAuthn registration options
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                userId:          { type: string }
+                userDisplayName: { type: string }
+      responses:
+        "200": { description: Registration options }
+
+  /api/v1/fido2/register/verify:
+    post:
+      tags: [FIDO2]
+      summary: Verify WebAuthn registration response
+      responses:
+        "200": { description: Credential registered }
+
+  /api/v1/fido2/authenticate/options:
+    post:
+      tags: [FIDO2]
+      summary: Get WebAuthn authentication options
+      responses:
+        "200": { description: Authentication options }
+
+  /api/v1/fido2/authenticate/verify:
+    post:
+      tags: [FIDO2]
+      summary: Verify WebAuthn authentication response
+      responses:
+        "200": { description: Authenticated }
+
+  # ── IPFS ────────────────────────────────────────────────────────────────────
+
+  /api/v1/ipfs/pin:
+    post:
+      tags: [IPFS]
+      summary: Pin a document to IPFS
+      security: [{ bearerAuth: [] }]
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  cid: { type: string }
+
+  /api/v1/ipfs/{cid}:
+    get:
+      tags: [IPFS]
+      summary: Retrieve a pinned document
+      parameters:
+        - { name: cid, in: path, required: true, schema: { type: string } }
+      responses:
+        "200": { description: Document content }
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+
+  responses:
+    BadRequest:
+      description: Invalid request body
+      content:
+        application/json:
+          schema: { $ref: "#/components/schemas/Error" }
+    Unauthorized:
+      description: Authentication required or failed
+      content:
+        application/json:
+          schema: { $ref: "#/components/schemas/Error" }
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema: { $ref: "#/components/schemas/Error" }
+    RateLimited:
+      description: Rate limit exceeded
+      content:
+        application/json:
+          schema: { $ref: "#/components/schemas/Error" }
+
+  schemas:
+    Error:
+      type: object
+      properties:
+        error: { type: string }
+
+    TxResponse:
+      type: object
+      properties:
+        txHash: { type: string, example: "0xabc123…" }
+
+    DeepHealth:
+      type: object
+      properties:
+        status:    { type: string, enum: [healthy, degraded] }
+        timestamp: { type: string, format: date-time }
+        checks:
+          type: object
+          additionalProperties:
+            type: object
+            properties:
+              ok:        { type: boolean }
+              latencyMs: { type: integer }
+              error:     { type: string }
+
+    CastVoteRequest:
+      type: object
+      required: [optionId, nullifier, proof]
+      properties:
+        optionId:  { type: string, example: "option-support" }
+        nullifier: { type: string, description: "H(voterSecret || policyId)" }
+        proof:     { type: object, description: "Groth16/Plonk ZK proof data" }
+
+    CastVoteResponse:
+      type: object
+      properties:
+        txHash:  { type: string }
+        receipt: { type: string, description: "8-char hex receipt code" }
+
+    AnonymisedTally:
+      type: object
+      properties:
+        status: { type: string, enum: [available, insufficient_votes] }
+        minimumRequired: { type: integer }
+        tally:
+          type: object
+          properties:
+            policyId: { type: string }
+            support:  { type: integer }
+            oppose:   { type: integer }
+            abstain:  { type: integer }
+            total:    { type: integer }
+            finalized: { type: boolean }
+
+    IdentityVerifyRequest:
+      type: object
+      required: [adapter, token]
+      properties:
+        adapter:     { type: string, example: govuk }
+        token:       { type: string, description: "OIDC id_token or adapter-specific token" }
+        extraParams: { type: object, additionalProperties: { type: string } }
+
+    IdentityVerifyResponse:
+      type: object
+      properties:
+        commitment:  { type: string, description: "0x… identity commitment hash" }
+        countryCode: { type: string, example: "GB" }
+
+    IdentityRegisterResponse:
+      type: object
+      properties:
+        commitment:        { type: string }
+        countryCode:       { type: string }
+        txHash:            { type: string, nullable: true }
+        alreadyRegistered: { type: boolean }
+
+    Proposal:
+      type: object
+      properties:
+        proposalId:  { type: string }
+        proposer:    { type: string }
+        description: { type: string }
+        state:       { type: string, enum: [Pending, Active, Canceled, Defeated, Succeeded, Queued, Expired, Executed] }
+        voteStart:   { type: integer }
+        voteEnd:     { type: integer }
+        votes:
+          type: object
+          properties:
+            for:     { type: string }
+            against: { type: string }
+            abstain: { type: string }
+
+    ProposeRequest:
+      type: object
+      required: [targets, values, calldatas, description]
+      properties:
+        targets:     { type: array, items: { type: string } }
+        values:      { type: array, items: { type: string } }
+        calldatas:   { type: array, items: { type: string } }
+        description: { type: string }
+
+    AuditPage:
+      type: object
+      properties:
+        entries: { type: array, items: { type: object } }
+        total:   { type: integer }
+        page:    { type: integer }
+
+    NotificationRegister:
+      type: object
+      required: [userId, token, platform, countryCode]
+      properties:
+        userId:      { type: string }
+        token:       { type: string }
+        platform:    { type: string, enum: [android, ios] }
+        countryCode: { type: string }
+
+    CertifyRequest:
+      type: object
+      required: [policyTitle, countryCode, txHash, merkleRoot]
+      properties:
+        policyTitle: { type: string }
+        countryCode: { type: string }
+        txHash:      { type: string }
+        merkleRoot:  { type: string }
+
+    CertifyResponse:
+      type: object
+      properties:
+        cid:       { type: string }
+        signature: { type: string }
+        issuedAt:  { type: string, format: date-time }
+        ipfsUrl:   { type: string }

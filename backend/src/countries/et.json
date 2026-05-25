@@ -1,0 +1,37 @@
+{
+  "code": "ET",
+  "name": "Ethiopia",
+  "nativeName": "ኢትዮጵያ",
+  "language": "am",
+  "languages": ["am", "or", "so", "ti"],
+  "rtl": false,
+  "identityScheme": "fayda-id",
+  "flagEmoji": "🇪🇹",
+  "region": "africa",
+  "branding": {
+    "primaryColor": "#078930",
+    "secondaryColor": "#FCDD09",
+    "surfaceColor": "#F0FFF5",
+    "onPrimaryColor": "#FFFFFF",
+    "darkStatusBar": true,
+    "governmentPortalName": "ethiopia.gov.et",
+    "governmentPortalURL": "https://www.ethiopia.gov.et",
+    "governmentLogoAlt": "Federal Democratic Republic of Ethiopia — Star of Solomon",
+    "flagColors": ["#078930", "#FCDD09", "#DA121A", "#0F47AF"]
+  },
+  "policies": [
+    {
+      "id": "et-grand-dam-2026",
+      "title": "Grand Ethiopian Renaissance Dam — Water Sharing Framework 2026",
+      "description": "Proposed legal framework for equitable water sharing from the GERD with downstream nations, alongside domestic electrification targets.",
+      "category": "infrastructure",
+      "documentIpfsCID": "",
+      "votingDeadlineISO": "2026-09-11T23:59:59Z",
+      "options": [
+        { "id": "support",  "label": "option.support",  "description": "option.support.desc" },
+        { "id": "oppose",   "label": "option.oppose",   "description": "option.oppose.desc" },
+        { "id": "abstain",  "label": "option.abstain",  "description": "option.abstain.desc" }
+      ]
+    }
+  ]
+}

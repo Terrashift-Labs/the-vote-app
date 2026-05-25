@@ -1,0 +1,37 @@
+{
+  "code": "NZ",
+  "name": "New Zealand",
+  "nativeName": "Aotearoa",
+  "language": "en",
+  "languages": ["en", "mi"],
+  "rtl": false,
+  "identityScheme": "realme-nz",
+  "flagEmoji": "🇳🇿",
+  "region": "oceania",
+  "branding": {
+    "primaryColor": "#00529F",
+    "secondaryColor": "#CC0000",
+    "surfaceColor": "#F5F8FF",
+    "onPrimaryColor": "#FFFFFF",
+    "darkStatusBar": true,
+    "governmentPortalName": "govt.nz",
+    "governmentPortalURL": "https://www.govt.nz",
+    "governmentLogoAlt": "New Zealand Government — Te Kāwanatanga o Aotearoa",
+    "flagColors": ["#00247D", "#CC0000", "#FFFFFF"]
+  },
+  "policies": [
+    {
+      "id": "nz-treaty-principles-2026",
+      "title": "Treaty of Waitangi Principles Act 2026",
+      "description": "Legislation to define and codify the principles of Te Tiriti o Waitangi, affecting co-governance arrangements across public services.",
+      "category": "justice",
+      "documentIpfsCID": "",
+      "votingDeadlineISO": "2026-02-06T23:59:59Z",
+      "options": [
+        { "id": "support",  "label": "option.support",  "description": "option.support.desc" },
+        { "id": "oppose",   "label": "option.oppose",   "description": "option.oppose.desc" },
+        { "id": "abstain",  "label": "option.abstain",  "description": "option.abstain.desc" }
+      ]
+    }
+  ]
+}

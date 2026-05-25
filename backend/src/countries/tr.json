@@ -1,0 +1,37 @@
+{
+  "code": "TR",
+  "name": "Turkey",
+  "nativeName": "Türkiye",
+  "language": "tr",
+  "languages": ["tr"],
+  "rtl": false,
+  "identityScheme": "e-devlet",
+  "flagEmoji": "🇹🇷",
+  "region": "middle-east",
+  "branding": {
+    "primaryColor": "#E30A17",
+    "secondaryColor": "#FFFFFF",
+    "surfaceColor": "#FFF5F5",
+    "onPrimaryColor": "#FFFFFF",
+    "darkStatusBar": true,
+    "governmentPortalName": "turkiye.gov.tr",
+    "governmentPortalURL": "https://www.turkiye.gov.tr",
+    "governmentLogoAlt": "Türkiye Cumhuriyeti Hükümeti Portalı",
+    "flagColors": ["#E30A17", "#FFFFFF"]
+  },
+  "policies": [
+    {
+      "id": "tr-deprem-2026",
+      "title": "Kentsel Dönüşüm ve Deprem Güvenliği Yasası 2026",
+      "description": "Riskli yapıların yıkılması ve yeniden inşası için mali destek mekanizmaları, zorunlu deprem sigortası ve denetim reformu.",
+      "category": "infrastructure",
+      "documentIpfsCID": "",
+      "votingDeadlineISO": "2026-10-29T23:59:59Z",
+      "options": [
+        { "id": "support",  "label": "option.support",  "description": "option.support.desc" },
+        { "id": "oppose",   "label": "option.oppose",   "description": "option.oppose.desc" },
+        { "id": "abstain",  "label": "option.abstain",  "description": "option.abstain.desc" }
+      ]
+    }
+  ]
+}

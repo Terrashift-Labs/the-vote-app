@@ -1,0 +1,10 @@
+[global]
+# Limit symbolic loop unrolling to keep SMT solving tractable
+loop = 4
+# Timeout per property (seconds)
+timeout = 120
+# Use optimistic loop semantics (assume loops terminate within `loop` iterations)
+optimistic-loop = true
+# Solver: z3 or yices2
+solver-timeout-branching = 5000
+solver-timeout-assertion  = 5000

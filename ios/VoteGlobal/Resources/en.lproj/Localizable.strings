@@ -1,0 +1,68 @@
+/* English */
+"app.name" = "TheVoteApp";
+"ok" = "OK";
+"cancel" = "Cancel";
+"error.title" = "Error";
+"back" = "Back";
+"loading" = "Loading…";
+"retry" = "Retry";
+
+/* Authentication */
+"auth.title" = "Sign in to vote";
+"auth.subtitle" = "Choose your country to continue";
+"biometric.reason" = "Authenticate to submit your vote securely";
+"error.biometric_unavailable" = "Biometric authentication is not available on this device.";
+"error.not_registered" = "You are not registered to vote.";
+"error.identity_not_verified" = "Your identity has not been verified.";
+"error.verification_failed" = "Could not verify your vote on the blockchain.";
+"fido2.title" = "Hardware key";
+"fido2.subtitle" = "Insert or tap your security key to confirm";
+
+/* Policies */
+"policies.title" = "Active Policies";
+"policy.deadline" = "Voting closes %@";
+"policy.status.open" = "Open";
+"policy.status.closed" = "Closed";
+"policy.status.tallying" = "Tallying";
+"policy.status.finalised" = "Finalised";
+"policy.view_results" = "View results";
+"policy.read_document" = "Read policy document";
+
+/* Vote */
+"vote.select_option" = "Select your vote";
+"vote.submit" = "Submit Vote";
+"vote.submit.hint" = "Requires biometric confirmation";
+"vote.signing" = "Signing your vote…";
+"vote.submitting" = "Recording on blockchain…";
+"vote.verifying" = "Verifying on ledger…";
+"vote.confirmed.title" = "Vote Recorded";
+"vote.confirmed.desc" = "Your vote has been permanently recorded on the blockchain. You can verify it anytime using your receipt nullifier.";
+"vote.receipt" = "Receipt";
+"vote.verify" = "Verify my vote";
+
+/* Options */
+"option.support" = "Support";
+"option.oppose" = "Oppose";
+"option.abstain" = "Abstain";
+"option.support.desc" = "I support this policy.";
+"option.oppose.desc" = "I oppose this policy.";
+"option.abstain.desc" = "I wish to abstain.";
+
+/* Results */
+"results.title" = "Results";
+"results.total" = "Total votes: %@";
+"results.pending" = "Results will be available once the poll closes.";
+
+/* Government branding */
+"branding.official_portal" = "Official government portal";
+"branding.powered_by" = "Powered by TheVoteApp — open source, blockchain secured";
+
+/* Policy categories */
+"category.healthcare" = "Healthcare";
+"category.education" = "Education";
+"category.economy" = "Economy";
+"category.environment" = "Environment";
+"category.defence" = "Defence";
+"category.infrastructure" = "Infrastructure";
+"category.justice" = "Justice";
+"category.other" = "Other";

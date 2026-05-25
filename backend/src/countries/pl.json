@@ -1,0 +1,37 @@
+{
+  "code": "PL",
+  "name": "Poland",
+  "nativeName": "Polska",
+  "language": "pl",
+  "languages": ["pl"],
+  "rtl": false,
+  "identityScheme": "epuap",
+  "flagEmoji": "🇵🇱",
+  "region": "europe",
+  "branding": {
+    "primaryColor": "#DC143C",
+    "secondaryColor": "#FFFFFF",
+    "surfaceColor": "#FFF5F8",
+    "onPrimaryColor": "#FFFFFF",
+    "darkStatusBar": true,
+    "governmentPortalName": "gov.pl",
+    "governmentPortalURL": "https://www.gov.pl",
+    "governmentLogoAlt": "Rząd Rzeczypospolitej Polskiej — Godło",
+    "flagColors": ["#FFFFFF", "#DC143C"]
+  },
+  "policies": [
+    {
+      "id": "pl-ochrona-klimatu-2026",
+      "title": "Ustawa o Ochronie Klimatu 2026",
+      "description": "Przepisy zobowiązujące Polskę do zamknięcia elektrowni węglowych do 2035 r. i zwiększenia udziału OZE do 65% w miksie energetycznym.",
+      "category": "environment",
+      "documentIpfsCID": "",
+      "votingDeadlineISO": "2026-11-11T23:59:59Z",
+      "options": [
+        { "id": "support",  "label": "option.support",  "description": "option.support.desc" },
+        { "id": "oppose",   "label": "option.oppose",   "description": "option.oppose.desc" },
+        { "id": "abstain",  "label": "option.abstain",  "description": "option.abstain.desc" }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "code": "FR",
+  "name": "France",
+  "nativeName": "France",
+  "language": "fr",
+  "languages": ["fr"],
+  "rtl": false,
+  "identityScheme": "france-connect",
+  "flagEmoji": "🇫🇷",
+  "region": "europe",
+  "branding": {
+    "primaryColor": "#003189",
+    "secondaryColor": "#ED2939",
+    "surfaceColor": "#F5F5FE",
+    "onPrimaryColor": "#FFFFFF",
+    "darkStatusBar": true,
+    "governmentPortalName": "service-public.fr",
+    "governmentPortalURL": "https://www.service-public.fr",
+    "governmentLogoAlt": "République Française — Liberté, Égalité, Fraternité",
+    "flagColors": ["#003189", "#FFFFFF", "#ED2939"],
+    "headerFontFamily": "Marianne"
+  },
+  "policies": [
+    {
+      "id": "fr-retraite-2026",
+      "title": "Réforme des retraites 2026",
+      "description": "Proposition de modification de l'âge légal de départ à la retraite et des règles de calcul des pensions.",
+      "category": "economy",
+      "documentIpfsCID": "",
+      "votingDeadlineISO": "2026-06-30T23:59:59Z",
+      "options": [
+        { "id": "support",  "label": "option.support",  "description": "option.support.desc" },
+        { "id": "oppose",   "label": "option.oppose",   "description": "option.oppose.desc" },
+        { "id": "abstain",  "label": "option.abstain",  "description": "option.abstain.desc" }
+      ]
+    },
+    {
+      "id": "fr-education-numerique-2026",
+      "title": "Plan éducation numérique 2026",
+      "description": "Programme national de dotation des établissements scolaires en équipements numériques et formation des enseignants.",
+      "category": "education",
+      "documentIpfsCID": "",
+      "votingDeadlineISO": "2026-06-30T23:59:59Z",
+      "options": [
+        { "id": "support",  "label": "option.support",  "description": "option.support.desc" },
+        { "id": "oppose",   "label": "option.oppose",   "description": "option.oppose.desc" },
+        { "id": "abstain",  "label": "option.abstain",  "description": "option.abstain.desc" }
+      ]
+    }
+  ]
+}

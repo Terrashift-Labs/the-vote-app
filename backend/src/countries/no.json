@@ -1,0 +1,37 @@
+{
+  "code": "NO",
+  "name": "Norway",
+  "nativeName": "Norge",
+  "language": "nb",
+  "languages": ["nb", "nn"],
+  "rtl": false,
+  "identityScheme": "bankid-no",
+  "flagEmoji": "🇳🇴",
+  "region": "europe",
+  "branding": {
+    "primaryColor": "#EF2B2D",
+    "secondaryColor": "#002868",
+    "surfaceColor": "#FFF5F5",
+    "onPrimaryColor": "#FFFFFF",
+    "darkStatusBar": true,
+    "governmentPortalName": "norge.no",
+    "governmentPortalURL": "https://www.norge.no",
+    "governmentLogoAlt": "Norges Regjering — Statsforvaltningen",
+    "flagColors": ["#EF2B2D", "#FFFFFF", "#002868"]
+  },
+  "policies": [
+    {
+      "id": "no-petroleum-2026",
+      "title": "Oljefondets Klimastrategi 2026",
+      "description": "Krav om at Statens pensjonsfond utland trekker seg ut av alle selskaper med mer enn 30 % inntekter fra kullutvinning innen 2027.",
+      "category": "environment",
+      "documentIpfsCID": "",
+      "votingDeadlineISO": "2026-05-17T23:59:59Z",
+      "options": [
+        { "id": "support",  "label": "option.support",  "description": "option.support.desc" },
+        { "id": "oppose",   "label": "option.oppose",   "description": "option.oppose.desc" },
+        { "id": "abstain",  "label": "option.abstain",  "description": "option.abstain.desc" }
+      ]
+    }
+  ]
+}

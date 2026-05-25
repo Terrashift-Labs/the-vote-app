@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">TheVoteApp</string>
+    <string name="back">Rudi</string>
+    <string name="ok">Sawa</string>
+    <string name="cancel">Ghairi</string>
+    <string name="loading">Inapakia…</string>
+    <string name="error_title">Hitilafu</string>
+    <string name="retry">Jaribu tena</string>
+    <string name="auth_title">Ingia kupiga kura</string>
+    <string name="auth_subtitle">Chagua nchi yako ili kuendelea</string>
+    <string name="biometric_title">Thibitisha kura yako</string>
+    <string name="biometric_subtitle">Thibitisha utambulisho wako ili kutuma kura salama</string>
+    <string name="biometric_failed">Uthibitisho umeshindwa. Tafadhali jaribu tena.</string>
+    <string name="fido2_title">Ufunguo wa vifaa</string>
+    <string name="fido2_subtitle">Weka au gusa ufunguo wako wa usalama kuthibitisha</string>
+    <string name="policies_title">Sera zinazofanya kazi</string>
+    <string name="policy_deadline">Upigaji kura unafungwa %1$s</string>
+    <string name="policy_status_open">Wazi</string>
+    <string name="policy_status_closed">Imefungwa</string>
+    <string name="policy_status_tallying">Kuhesabu</string>
+    <string name="policy_status_finalised">Imekamilika</string>
+    <string name="view_results">Tazama matokeo</string>
+    <string name="read_document">Soma hati ya sera</string>
+    <string name="select_your_vote">Chagua kura yako</string>
+    <string name="submit_vote">Tuma Kura</string>
+    <string name="signing_vote">Inasaini kura yako…</string>
+    <string name="submitting_vote">Inarekodiwa kwenye blockchain…</string>
+    <string name="verifying_vote">Inathibitishwa kwenye rejesta…</string>
+    <string name="vote_confirmed">Kura Imerekodiwa</string>
+    <string name="vote_confirmed_desc">Kura yako imerekodiwa kudumu kwenye blockchain. Unaweza kuithibitisha wakati wowote kwa kutumia risiti yako.</string>
+    <string name="transaction_hash">TX: %1$s</string>
+    <string name="vote_receipt">Risiti</string>
+    <string name="verify_vote">Thibitisha kura yangu</string>
+    <string name="option_support">Kuunga mkono</string>
+    <string name="option_oppose">Kupinga</string>
+    <string name="option_abstain">Kutopiga kura</string>
+    <string name="results_title">Matokeo</string>
+    <string name="total_votes">Jumla ya kura: %1$s</string>
+    <string name="results_pending">Matokeo yatapatikana baada ya upigaji kura kufungwa.</string>
+    <string name="official_portal">Tovuti rasmi ya serikali</string>
+    <string name="powered_by">Imetengenezwa na TheVoteApp — chanzo huria, salama kwa blockchain</string>
+</resources>

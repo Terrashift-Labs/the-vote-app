@@ -1,0 +1,50 @@
+{
+  "code": "ZA",
+  "name": "South Africa",
+  "nativeName": "South Africa",
+  "language": "en",
+  "languages": ["en", "zu", "xh", "af", "st", "tn", "ts", "ss", "ve", "nr", "nso"],
+  "rtl": false,
+  "identityScheme": "smart-id-za",
+  "flagEmoji": "🇿🇦",
+  "region": "africa",
+  "branding": {
+    "primaryColor": "#007A4D",
+    "secondaryColor": "#DE3831",
+    "surfaceColor": "#F5FFF8",
+    "onPrimaryColor": "#FFFFFF",
+    "darkStatusBar": true,
+    "governmentPortalName": "gov.za",
+    "governmentPortalURL": "https://www.gov.za",
+    "governmentLogoAlt": "South African Coat of Arms — Unity in Diversity",
+    "flagColors": ["#007A4D", "#FFFFFF", "#FFB612", "#007A4D", "#DE3831", "#002395", "#000000"]
+  },
+  "policies": [
+    {
+      "id": "za-nhi-2026",
+      "title": "National Health Insurance Implementation 2026",
+      "description": "Phase 2 implementation of the National Health Insurance fund, covering comprehensive primary and specialist care for all citizens.",
+      "category": "healthcare",
+      "documentIpfsCID": "",
+      "votingDeadlineISO": "2026-09-01T23:59:59Z",
+      "options": [
+        { "id": "support",  "label": "option.support",  "description": "option.support.desc" },
+        { "id": "oppose",   "label": "option.oppose",   "description": "option.oppose.desc" },
+        { "id": "abstain",  "label": "option.abstain",  "description": "option.abstain.desc" }
+      ]
+    },
+    {
+      "id": "za-energy-loadshedding-2026",
+      "title": "Energy Security and Loadshedding Resolution Act 2026",
+      "description": "Emergency legislation to accelerate private generation licensing, battery storage incentives, and Eskom debt restructuring.",
+      "category": "infrastructure",
+      "documentIpfsCID": "",
+      "votingDeadlineISO": "2026-09-01T23:59:59Z",
+      "options": [
+        { "id": "support",  "label": "option.support",  "description": "option.support.desc" },
+        { "id": "oppose",   "label": "option.oppose",   "description": "option.oppose.desc" },
+        { "id": "abstain",  "label": "option.abstain",  "description": "option.abstain.desc" }
+      ]
+    }
+  ]
+}

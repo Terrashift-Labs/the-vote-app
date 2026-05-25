@@ -1,0 +1,37 @@
+{
+  "code": "GH",
+  "name": "Ghana",
+  "nativeName": "Ghana",
+  "language": "en",
+  "languages": ["en", "tw", "ak"],
+  "rtl": false,
+  "identityScheme": "ghana-card",
+  "flagEmoji": "🇬🇭",
+  "region": "africa",
+  "branding": {
+    "primaryColor": "#006B3F",
+    "secondaryColor": "#FCD116",
+    "surfaceColor": "#F5FFF0",
+    "onPrimaryColor": "#FFFFFF",
+    "darkStatusBar": true,
+    "governmentPortalName": "ghana.gov.gh",
+    "governmentPortalURL": "https://www.ghana.gov.gh",
+    "governmentLogoAlt": "Republic of Ghana — Freedom and Justice",
+    "flagColors": ["#CE1126", "#FCD116", "#006B3F", "#000000"]
+  },
+  "policies": [
+    {
+      "id": "gh-free-shs-2026",
+      "title": "Free SHS Expansion Act 2026",
+      "description": "Extension of the Free Senior High School policy to include technical and vocational education, with infrastructure investment in 200 schools.",
+      "category": "education",
+      "documentIpfsCID": "",
+      "votingDeadlineISO": "2026-03-06T23:59:59Z",
+      "options": [
+        { "id": "support",  "label": "option.support",  "description": "option.support.desc" },
+        { "id": "oppose",   "label": "option.oppose",   "description": "option.oppose.desc" },
+        { "id": "abstain",  "label": "option.abstain",  "description": "option.abstain.desc" }
+      ]
+    }
+  ]
+}

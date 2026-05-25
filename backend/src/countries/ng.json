@@ -1,0 +1,50 @@
+{
+  "code": "NG",
+  "name": "Nigeria",
+  "nativeName": "Nigeria",
+  "language": "en",
+  "languages": ["en", "ha", "yo", "ig"],
+  "rtl": false,
+  "identityScheme": "nimc-nin",
+  "flagEmoji": "🇳🇬",
+  "region": "africa",
+  "branding": {
+    "primaryColor": "#008751",
+    "secondaryColor": "#1E1E1E",
+    "surfaceColor": "#F0FFF5",
+    "onPrimaryColor": "#FFFFFF",
+    "darkStatusBar": true,
+    "governmentPortalName": "nigeria.gov.ng",
+    "governmentPortalURL": "https://www.nigeria.gov.ng",
+    "governmentLogoAlt": "Federal Republic of Nigeria Coat of Arms",
+    "flagColors": ["#008751", "#FFFFFF"]
+  },
+  "policies": [
+    {
+      "id": "ng-subsidy-reform-2026",
+      "title": "Petroleum Subsidy Reinvestment Act 2026",
+      "description": "Framework for redirecting fuel subsidy savings into education, healthcare, and transport infrastructure in all 36 states.",
+      "category": "economy",
+      "documentIpfsCID": "",
+      "votingDeadlineISO": "2026-10-01T23:59:59Z",
+      "options": [
+        { "id": "support",  "label": "option.support",  "description": "option.support.desc" },
+        { "id": "oppose",   "label": "option.oppose",   "description": "option.oppose.desc" },
+        { "id": "abstain",  "label": "option.abstain",  "description": "option.abstain.desc" }
+      ]
+    },
+    {
+      "id": "ng-education-2026",
+      "title": "Universal Basic Education Funding Act 2026",
+      "description": "Increased federal matching grants for UBE, mandatory school feeding programme, and prohibition of out-of-school work for under-16s.",
+      "category": "education",
+      "documentIpfsCID": "",
+      "votingDeadlineISO": "2026-10-01T23:59:59Z",
+      "options": [
+        { "id": "support",  "label": "option.support",  "description": "option.support.desc" },
+        { "id": "oppose",   "label": "option.oppose",   "description": "option.oppose.desc" },
+        { "id": "abstain",  "label": "option.abstain",  "description": "option.abstain.desc" }
+      ]
+    }
+  ]
+}

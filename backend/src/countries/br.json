@@ -1,0 +1,50 @@
+{
+  "code": "BR",
+  "name": "Brazil",
+  "nativeName": "Brasil",
+  "language": "pt",
+  "languages": ["pt"],
+  "rtl": false,
+  "identityScheme": "gov-br",
+  "flagEmoji": "🇧🇷",
+  "region": "americas",
+  "branding": {
+    "primaryColor": "#009C3B",
+    "secondaryColor": "#FFDF00",
+    "surfaceColor": "#F0FFF4",
+    "onPrimaryColor": "#FFFFFF",
+    "darkStatusBar": true,
+    "governmentPortalName": "gov.br",
+    "governmentPortalURL": "https://www.gov.br",
+    "governmentLogoAlt": "Portal Gov.br — Governo Federal do Brasil",
+    "flagColors": ["#009C3B", "#FFDF00", "#002776", "#FFFFFF"]
+  },
+  "policies": [
+    {
+      "id": "br-saude-publica-2026",
+      "title": "Plano de Fortalecimento do SUS 2026",
+      "description": "Proposta de ampliação do financiamento do Sistema Único de Saúde, com foco na atenção básica e redução de filas cirúrgicas.",
+      "category": "healthcare",
+      "documentIpfsCID": "",
+      "votingDeadlineISO": "2026-10-31T23:59:59Z",
+      "options": [
+        { "id": "support",  "label": "option.support",  "description": "option.support.desc" },
+        { "id": "oppose",   "label": "option.oppose",   "description": "option.oppose.desc" },
+        { "id": "abstain",  "label": "option.abstain",  "description": "option.abstain.desc" }
+      ]
+    },
+    {
+      "id": "br-amazonia-2026",
+      "title": "Lei de Proteção da Amazônia 2026",
+      "description": "Legislação para ampliar a fiscalização do desmatamento e criar incentivos econômicos para a bioeconomia amazônica.",
+      "category": "environment",
+      "documentIpfsCID": "",
+      "votingDeadlineISO": "2026-10-31T23:59:59Z",
+      "options": [
+        { "id": "support",  "label": "option.support",  "description": "option.support.desc" },
+        { "id": "oppose",   "label": "option.oppose",   "description": "option.oppose.desc" },
+        { "id": "abstain",  "label": "option.abstain",  "description": "option.abstain.desc" }
+      ]
+    }
+  ]
+}

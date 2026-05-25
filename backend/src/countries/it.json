@@ -1,0 +1,37 @@
+{
+  "code": "IT",
+  "name": "Italy",
+  "nativeName": "Italia",
+  "language": "it",
+  "languages": ["it"],
+  "rtl": false,
+  "identityScheme": "spid",
+  "flagEmoji": "🇮🇹",
+  "region": "europe",
+  "branding": {
+    "primaryColor": "#009246",
+    "secondaryColor": "#CE2B37",
+    "surfaceColor": "#F5FFF8",
+    "onPrimaryColor": "#FFFFFF",
+    "darkStatusBar": true,
+    "governmentPortalName": "governo.it",
+    "governmentPortalURL": "https://www.governo.it",
+    "governmentLogoAlt": "Governo Italiano — Palazzo Chigi",
+    "flagColors": ["#009246", "#FFFFFF", "#CE2B37"]
+  },
+  "policies": [
+    {
+      "id": "it-pnrr-sanita-2026",
+      "title": "PNRR — Riforma Sanitaria 2026",
+      "description": "Attuazione degli investimenti del Piano Nazionale di Ripresa e Resilienza per la digitalizzazione del Servizio Sanitario Nazionale.",
+      "category": "healthcare",
+      "documentIpfsCID": "",
+      "votingDeadlineISO": "2026-09-20T23:59:59Z",
+      "options": [
+        { "id": "support",  "label": "option.support",  "description": "option.support.desc" },
+        { "id": "oppose",   "label": "option.oppose",   "description": "option.oppose.desc" },
+        { "id": "abstain",  "label": "option.abstain",  "description": "option.abstain.desc" }
+      ]
+    }
+  ]
+}

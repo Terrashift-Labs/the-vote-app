@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">TheVoteApp</string>
+    <string name="back">返回</string>
+    <string name="ok">确定</string>
+    <string name="cancel">取消</string>
+    <string name="loading">加载中…</string>
+    <string name="error_title">错误</string>
+    <string name="retry">重试</string>
+    <string name="auth_title">登录投票</string>
+    <string name="auth_subtitle">选择您的国家以继续</string>
+    <string name="biometric_title">确认您的投票</string>
+    <string name="biometric_subtitle">通过身份验证安全提交您的投票</string>
+    <string name="biometric_failed">身份验证失败，请重试。</string>
+    <string name="fido2_title">硬件密钥</string>
+    <string name="fido2_subtitle">插入或轻触安全密钥以确认</string>
+    <string name="policies_title">现行政策</string>
+    <string name="policy_deadline">投票于 %1$s 截止</string>
+    <string name="policy_status_open">开放</string>
+    <string name="policy_status_closed">已关闭</string>
+    <string name="policy_status_tallying">计票中</string>
+    <string name="policy_status_finalised">已确定</string>
+    <string name="view_results">查看结果</string>
+    <string name="read_document">阅读政策文件</string>
+    <string name="select_your_vote">选择您的投票</string>
+    <string name="submit_vote">提交投票</string>
+    <string name="signing_vote">正在签署您的投票…</string>
+    <string name="submitting_vote">正在记录到区块链…</string>
+    <string name="verifying_vote">正在验证账本…</string>
+    <string name="vote_confirmed">投票已记录</string>
+    <string name="vote_confirmed_desc">您的投票已永久记录在区块链上。您可以随时使用收据号码进行验证。</string>
+    <string name="transaction_hash">TX：%1$s</string>
+    <string name="vote_receipt">收据</string>
+    <string name="verify_vote">验证我的投票</string>
+    <string name="option_support">支持</string>
+    <string name="option_oppose">反对</string>
+    <string name="option_abstain">弃权</string>
+    <string name="results_title">结果</string>
+    <string name="total_votes">总票数：%1$s</string>
+    <string name="results_pending">结果将在投票结束后公布。</string>
+    <string name="official_portal">官方政府门户网站</string>
+    <string name="powered_by">由 TheVoteApp 提供支持 — 开源，区块链安全保障</string>
+</resources>

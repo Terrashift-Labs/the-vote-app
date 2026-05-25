@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">TheVoteApp</string>
+    <string name="back">戻る</string>
+    <string name="ok">OK</string>
+    <string name="cancel">キャンセル</string>
+    <string name="loading">読み込み中…</string>
+    <string name="error_title">エラー</string>
+    <string name="retry">再試行</string>
+    <string name="auth_title">投票するにはサインイン</string>
+    <string name="auth_subtitle">続けるには国を選択してください</string>
+    <string name="biometric_title">投票を確認</string>
+    <string name="biometric_subtitle">安全に投票を送信するために認証してください</string>
+    <string name="biometric_failed">認証に失敗しました。もう一度お試しください。</string>
+    <string name="fido2_title">ハードウェアキー</string>
+    <string name="fido2_subtitle">確認するにはセキュリティキーを挿入またはタップしてください</string>
+    <string name="policies_title">現在の政策</string>
+    <string name="policy_deadline">投票終了: %1$s</string>
+    <string name="policy_status_open">受付中</string>
+    <string name="policy_status_closed">締切</string>
+    <string name="policy_status_tallying">集計中</string>
+    <string name="policy_status_finalised">確定</string>
+    <string name="view_results">結果を見る</string>
+    <string name="read_document">政策文書を読む</string>
+    <string name="select_your_vote">投票先を選択</string>
+    <string name="submit_vote">投票する</string>
+    <string name="signing_vote">投票に署名中…</string>
+    <string name="submitting_vote">ブロックチェーンに記録中…</string>
+    <string name="verifying_vote">台帳で確認中…</string>
+    <string name="vote_confirmed">投票が記録されました</string>
+    <string name="vote_confirmed_desc">あなたの投票はブロックチェーンに永続的に記録されました。領収書のヌリファイアーでいつでも確認できます。</string>
+    <string name="transaction_hash">TX: %1$s</string>
+    <string name="vote_receipt">領収書</string>
+    <string name="verify_vote">投票を確認する</string>
+    <string name="option_support">賛成</string>
+    <string name="option_oppose">反対</string>
+    <string name="option_abstain">棄権</string>
+    <string name="results_title">結果</string>
+    <string name="total_votes">総投票数: %1$s</string>
+    <string name="results_pending">投票終了後に結果が表示されます。</string>
+    <string name="official_portal">政府公式ポータル</string>
+    <string name="powered_by">TheVoteApp提供 — オープンソース、ブロックチェーン対応</string>
+</resources>

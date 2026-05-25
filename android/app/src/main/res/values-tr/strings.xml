@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">TheVoteApp</string>
+    <string name="back">Geri</string>
+    <string name="ok">Tamam</string>
+    <string name="cancel">İptal</string>
+    <string name="loading">Yükleniyor…</string>
+    <string name="error_title">Hata</string>
+    <string name="retry">Tekrar Dene</string>
+    <string name="auth_title">Oy Vermek İçin Giriş Yapın</string>
+    <string name="auth_subtitle">Devam etmek için ülkenizi seçin</string>
+    <string name="biometric_title">Oyunuzu Onaylayın</string>
+    <string name="biometric_subtitle">Oyunuzu güvenli göndermek için kimlik doğrulayın</string>
+    <string name="biometric_failed">Kimlik doğrulama başarısız. Lütfen tekrar deneyin.</string>
+    <string name="fido2_title">Donanım Anahtarı</string>
+    <string name="fido2_subtitle">Onaylamak için güvenlik anahtarınızı takın veya dokunun</string>
+    <string name="policies_title">Aktif Politikalar</string>
+    <string name="policy_deadline">Oylama %1$s kapanıyor</string>
+    <string name="policy_status_open">Açık</string>
+    <string name="policy_status_closed">Kapalı</string>
+    <string name="policy_status_tallying">Sayılıyor</string>
+    <string name="policy_status_finalised">Kesinleşti</string>
+    <string name="view_results">Sonuçları Gör</string>
+    <string name="read_document">Belgeyi Oku</string>
+    <string name="select_your_vote">Oyunuzu Seçin</string>
+    <string name="submit_vote">Oyu Gönder</string>
+    <string name="signing_vote">Oyunuz imzalanıyor…</string>
+    <string name="submitting_vote">Blockchain\'e kaydediliyor…</string>
+    <string name="verifying_vote">Defterde doğrulanıyor…</string>
+    <string name="vote_confirmed">Oy Kaydedildi</string>
+    <string name="vote_confirmed_desc">Oyunuz blockchain üzerinde kalıcı olarak kaydedildi. Makbuz numaranızla istediğiniz zaman doğrulayabilirsiniz.</string>
+    <string name="transaction_hash">TX: %1$s</string>
+    <string name="vote_receipt">Makbuz</string>
+    <string name="verify_vote">Oyumu Doğrula</string>
+    <string name="option_support">Destek</string>
+    <string name="option_oppose">Ret</string>
+    <string name="option_abstain">Çekimser</string>
+    <string name="results_title">Sonuçlar</string>
+    <string name="total_votes">Toplam oy: %1$s</string>
+    <string name="results_pending">Sonuçlar oylama kapandıktan sonra açıklanacak.</string>
+    <string name="official_portal">Resmi Devlet Portalı</string>
+    <string name="powered_by">TheVoteApp tarafından destekleniyor — açık kaynak, blockchain güvenceli</string>
+</resources>

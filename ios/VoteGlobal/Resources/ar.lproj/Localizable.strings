@@ -1,0 +1,29 @@
+/* Arabic — TODO: professional translation required */
+"app.name" = "TheVoteApp";
+"ok" = "موافق";
+"error.title" = "خطأ";
+"back" = "رجوع";
+
+"biometric.reason" = "المصادقة لإرسال تصويتك بأمان";
+"error.biometric_unavailable" = "المصادقة البيومترية غير متوفرة على هذا الجهاز.";
+"error.not_registered" = "أنت غير مسجل للتصويت.";
+"error.identity_not_verified" = "لم يتم التحقق من هويتك.";
+"error.verification_failed" = "تعذر التحقق من تصويتك على blockchain.";
+
+"vote.select_option" = "اختر تصويتك";
+"vote.submit" = "إرسال التصويت";
+"vote.submit.hint" = "يتطلب تأكيداً بيومترياً";
+"vote.signing" = "جارٍ توقيع تصويتك…";
+"vote.submitting" = "جارٍ التسجيل على blockchain…";
+"vote.verifying" = "جارٍ التحقق في السجل…";
+"vote.confirmed.title" = "تم تسجيل التصويت";
+"vote.confirmed.desc" = "تم تسجيل تصويتك بشكل دائم على blockchain. يمكنك التحقق منه في أي وقت باستخدام رقم الإيصال الخاص بك.";
+
+"category.healthcare" = "الرعاية الصحية";
+"category.education" = "التعليم";
+"category.economy" = "الاقتصاد";
+"category.environment" = "البيئة";
+"category.defence" = "الدفاع";
+"category.infrastructure" = "البنية التحتية";
+"category.justice" = "العدالة";
+"category.other" = "أخرى";

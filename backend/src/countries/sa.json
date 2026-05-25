@@ -1,0 +1,38 @@
+{
+  "code": "SA",
+  "name": "Saudi Arabia",
+  "nativeName": "المملكة العربية السعودية",
+  "language": "ar",
+  "languages": ["ar"],
+  "rtl": true,
+  "identityScheme": "absher",
+  "flagEmoji": "🇸🇦",
+  "region": "middle-east",
+  "branding": {
+    "primaryColor": "#006C35",
+    "secondaryColor": "#FFFFFF",
+    "surfaceColor": "#F0FFF5",
+    "onPrimaryColor": "#FFFFFF",
+    "darkStatusBar": true,
+    "governmentPortalName": "my.gov.sa",
+    "governmentPortalURL": "https://www.my.gov.sa",
+    "governmentLogoAlt": "بوابة الحكومة السعودية — رؤية 2030",
+    "flagColors": ["#006C35", "#FFFFFF"],
+    "headerFontFamily": "Noto Sans Arabic"
+  },
+  "policies": [
+    {
+      "id": "sa-vision2030-education-2026",
+      "title": "مبادرة التعليم للجميع 2026",
+      "description": "خطة لتطوير المناهج الدراسية وتعزيز التعليم الرقمي والتقني استكمالاً لأهداف رؤية المملكة 2030.",
+      "category": "education",
+      "documentIpfsCID": "",
+      "votingDeadlineISO": "2026-09-23T23:59:59Z",
+      "options": [
+        { "id": "support",  "label": "option.support",  "description": "option.support.desc" },
+        { "id": "oppose",   "label": "option.oppose",   "description": "option.oppose.desc" },
+        { "id": "abstain",  "label": "option.abstain",  "description": "option.abstain.desc" }
+      ]
+    }
+  ]
+}

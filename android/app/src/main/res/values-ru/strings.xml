@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">TheVoteApp</string>
+    <string name="back">Назад</string>
+    <string name="ok">ОК</string>
+    <string name="cancel">Отмена</string>
+    <string name="loading">Загрузка…</string>
+    <string name="error_title">Ошибка</string>
+    <string name="retry">Повторить</string>
+    <string name="auth_title">Войдите, чтобы проголосовать</string>
+    <string name="auth_subtitle">Выберите вашу страну, чтобы продолжить</string>
+    <string name="biometric_title">Подтвердите голосование</string>
+    <string name="biometric_subtitle">Пройдите аутентификацию для безопасной подачи голоса</string>
+    <string name="biometric_failed">Аутентификация не удалась. Пожалуйста, повторите попытку.</string>
+    <string name="fido2_title">Аппаратный ключ</string>
+    <string name="fido2_subtitle">Вставьте или коснитесь ключа безопасности для подтверждения</string>
+    <string name="policies_title">Действующие законопроекты</string>
+    <string name="policy_deadline">Голосование закрывается %1$s</string>
+    <string name="policy_status_open">Открыто</string>
+    <string name="policy_status_closed">Закрыто</string>
+    <string name="policy_status_tallying">Подсчёт</string>
+    <string name="policy_status_finalised">Завершено</string>
+    <string name="view_results">Смотреть результаты</string>
+    <string name="read_document">Читать документ</string>
+    <string name="select_your_vote">Выберите вариант</string>
+    <string name="submit_vote">Подать голос</string>
+    <string name="signing_vote">Подписываю ваш голос…</string>
+    <string name="submitting_vote">Запись в блокчейн…</string>
+    <string name="verifying_vote">Проверка в реестре…</string>
+    <string name="vote_confirmed">Голос записан</string>
+    <string name="vote_confirmed_desc">Ваш голос постоянно записан в блокчейн. Вы можете проверить его в любое время с помощью квитанции.</string>
+    <string name="transaction_hash">TX: %1$s</string>
+    <string name="vote_receipt">Квитанция</string>
+    <string name="verify_vote">Проверить мой голос</string>
+    <string name="option_support">За</string>
+    <string name="option_oppose">Против</string>
+    <string name="option_abstain">Воздержаться</string>
+    <string name="results_title">Результаты</string>
+    <string name="total_votes">Всего голосов: %1$s</string>
+    <string name="results_pending">Результаты будут доступны после закрытия голосования.</string>
+    <string name="official_portal">Официальный государственный портал</string>
+    <string name="powered_by">Работает на TheVoteApp — открытый исходный код, защита блокчейном</string>
+</resources>

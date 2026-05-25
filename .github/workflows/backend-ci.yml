@@ -1,0 +1,74 @@
+name: Backend CI
+
+on:
+  push:
+    branches: [main, "release/**"]
+    paths: ["backend/**", "blockchain/**", ".github/workflows/backend-ci.yml"]
+  pull_request:
+    branches: [main]
+    paths: ["backend/**", "blockchain/**"]
+
+jobs:
+  backend:
+    name: Backend Build & Test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: backend/package-lock.json
+
+      - name: Install dependencies
+        working-directory: backend
+        run: npm ci
+
+      - name: Lint
+        working-directory: backend
+        run: npm run lint
+
+      - name: Type check
+        working-directory: backend
+        run: npx tsc --noEmit
+
+      - name: Unit tests
+        working-directory: backend
+        run: npm test
+
+      - name: Security audit
+        working-directory: backend
+        run: npm audit --audit-level=moderate
+
+  blockchain:
+    name: Smart Contract Tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: blockchain/package-lock.json
+
+      - name: Install dependencies
+        working-directory: blockchain
+        run: npm ci
+
+      - name: Compile contracts
+        working-directory: blockchain
+        run: npx hardhat compile
+
+      - name: Solhint
+        working-directory: blockchain
+        run: npm run lint
+
+      - name: Run tests
+        working-directory: blockchain
+        run: npx hardhat test
+
+      - name: Coverage (must be ≥90%)
+        working-directory: blockchain
+        run: npx hardhat coverage

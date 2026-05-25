@@ -1,0 +1,139 @@
+{
+  "title": "TheVoteApp — Backend",
+  "uid": "thevoteapp-backend",
+  "schemaVersion": 38,
+  "version": 1,
+  "refresh": "15s",
+  "time": { "from": "now-1h", "to": "now" },
+  "panels": [
+    {
+      "id": 1,
+      "type": "stat",
+      "title": "Votes Cast (last 1h)",
+      "gridPos": { "x": 0, "y": 0, "w": 6, "h": 4 },
+      "targets": [
+        {
+          "expr": "increase(thevoteapp_votes_cast_total[1h])",
+          "legendFormat": "Votes"
+        }
+      ],
+      "options": { "reduceOptions": { "calcs": ["sum"] }, "colorMode": "background" }
+    },
+    {
+      "id": 2,
+      "type": "stat",
+      "title": "Vote Errors (last 1h)",
+      "gridPos": { "x": 6, "y": 0, "w": 6, "h": 4 },
+      "targets": [
+        {
+          "expr": "increase(thevoteapp_vote_errors_total[1h])",
+          "legendFormat": "Errors"
+        }
+      ],
+      "options": {
+        "reduceOptions": { "calcs": ["sum"] },
+        "colorMode": "background",
+        "thresholds": { "steps": [{ "value": 0, "color": "green" }, { "value": 1, "color": "red" }] }
+      }
+    },
+    {
+      "id": 3,
+      "type": "stat",
+      "title": "Active WebSocket Clients",
+      "gridPos": { "x": 12, "y": 0, "w": 6, "h": 4 },
+      "targets": [
+        { "expr": "thevoteapp_active_websocket_clients", "legendFormat": "Clients" }
+      ],
+      "options": { "reduceOptions": { "calcs": ["last"] }, "colorMode": "value" }
+    },
+    {
+      "id": 4,
+      "type": "stat",
+      "title": "Heap Used (MB)",
+      "gridPos": { "x": 18, "y": 0, "w": 6, "h": 4 },
+      "targets": [
+        {
+          "expr": "thevoteapp_nodejs_heap_size_used_bytes / 1024 / 1024",
+          "legendFormat": "Heap MB"
+        }
+      ],
+      "options": {
+        "reduceOptions": { "calcs": ["last"] },
+        "unit": "MB",
+        "thresholds": { "steps": [{ "value": 0, "color": "green" }, { "value": 400, "color": "orange" }, { "value": 480, "color": "red" }] }
+      }
+    },
+    {
+      "id": 5,
+      "type": "timeseries",
+      "title": "HTTP Request Rate",
+      "gridPos": { "x": 0, "y": 4, "w": 12, "h": 8 },
+      "targets": [
+        {
+          "expr": "sum by (route, status_code) (rate(thevoteapp_http_request_duration_ms_count[1m]))",
+          "legendFormat": "{{route}} {{status_code}}"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "type": "timeseries",
+      "title": "HTTP P95 Latency (ms)",
+      "gridPos": { "x": 12, "y": 4, "w": 12, "h": 8 },
+      "targets": [
+        {
+          "expr": "histogram_quantile(0.95, sum by (le, route) (rate(thevoteapp_http_request_duration_ms_bucket[5m])))",
+          "legendFormat": "p95 {{route}}"
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "type": "timeseries",
+      "title": "Votes Cast per Minute (by option)",
+      "gridPos": { "x": 0, "y": 12, "w": 12, "h": 8 },
+      "targets": [
+        {
+          "expr": "sum by (option) (rate(thevoteapp_votes_cast_total[1m]))",
+          "legendFormat": "{{option}}"
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "type": "timeseries",
+      "title": "Blockchain RPC P95 Latency (ms)",
+      "gridPos": { "x": 12, "y": 12, "w": 12, "h": 8 },
+      "targets": [
+        {
+          "expr": "histogram_quantile(0.95, sum by (le, method) (rate(thevoteapp_blockchain_rpc_duration_ms_bucket[5m])))",
+          "legendFormat": "p95 {{method}}"
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "type": "timeseries",
+      "title": "Event Loop Lag (ms)",
+      "gridPos": { "x": 0, "y": 20, "w": 12, "h": 8 },
+      "targets": [
+        {
+          "expr": "thevoteapp_nodejs_eventloop_lag_seconds * 1000",
+          "legendFormat": "Event loop lag"
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "type": "timeseries",
+      "title": "Redis Operations / sec",
+      "gridPos": { "x": 12, "y": 20, "w": 12, "h": 8 },
+      "targets": [
+        {
+          "expr": "sum by (operation, status) (rate(thevoteapp_redis_operations_total[1m]))",
+          "legendFormat": "{{operation}} {{status}}"
+        }
+      ]
+    }
+  ]
+}

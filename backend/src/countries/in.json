@@ -1,0 +1,51 @@
+{
+  "code": "IN",
+  "name": "India",
+  "nativeName": "भारत",
+  "language": "hi",
+  "languages": ["hi", "en", "bn", "te", "mr", "ta", "ur", "gu", "kn", "ml"],
+  "rtl": false,
+  "identityScheme": "aadhaar",
+  "flagEmoji": "🇮🇳",
+  "region": "asia",
+  "branding": {
+    "primaryColor": "#FF9933",
+    "secondaryColor": "#138808",
+    "surfaceColor": "#FFFAF5",
+    "onPrimaryColor": "#FFFFFF",
+    "darkStatusBar": false,
+    "governmentPortalName": "India.gov.in",
+    "governmentPortalURL": "https://www.india.gov.in",
+    "governmentLogoAlt": "National Emblem of India — Satyameva Jayate",
+    "flagColors": ["#FF9933", "#FFFFFF", "#138808", "#000080"],
+    "headerFontFamily": "Noto Sans Devanagari"
+  },
+  "policies": [
+    {
+      "id": "in-ayushman-expansion-2026",
+      "title": "Ayushman Bharat Expansion 2026",
+      "description": "Proposal to extend Pradhan Mantri Jan Arogya Yojana coverage to 700 million citizens with enhanced cashless hospitalisation benefits.",
+      "category": "healthcare",
+      "documentIpfsCID": "",
+      "votingDeadlineISO": "2026-08-15T23:59:59Z",
+      "options": [
+        { "id": "support",  "label": "option.support",  "description": "option.support.desc" },
+        { "id": "oppose",   "label": "option.oppose",   "description": "option.oppose.desc" },
+        { "id": "abstain",  "label": "option.abstain",  "description": "option.abstain.desc" }
+      ]
+    },
+    {
+      "id": "in-digital-india-2026",
+      "title": "Digital India 2.0 Act 2026",
+      "description": "Next phase of Digital India: universal broadband for 650,000 villages, AI in public services, and data localisation requirements.",
+      "category": "infrastructure",
+      "documentIpfsCID": "",
+      "votingDeadlineISO": "2026-08-15T23:59:59Z",
+      "options": [
+        { "id": "support",  "label": "option.support",  "description": "option.support.desc" },
+        { "id": "oppose",   "label": "option.oppose",   "description": "option.oppose.desc" },
+        { "id": "abstain",  "label": "option.abstain",  "description": "option.abstain.desc" }
+      ]
+    }
+  ]
+}

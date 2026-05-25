@@ -1,0 +1,68 @@
+name: Formal Verification
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "blockchain/contracts/**"
+      - "blockchain/test/formal/**"
+      - "blockchain/halmos.toml"
+  pull_request:
+    paths:
+      - "blockchain/contracts/**"
+      - "blockchain/test/formal/**"
+  workflow_dispatch:
+
+jobs:
+  halmos:
+    name: Halmos Symbolic Execution
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Install Foundry
+        uses: foundry-rs/foundry-toolchain@v1
+        with:
+          version: nightly
+
+      - name: Install forge-std + halmos-cheatcodes
+        run: |
+          mkdir -p blockchain/lib
+          git clone --depth 1 https://github.com/foundry-rs/forge-std \
+            blockchain/lib/forge-std
+          git clone --depth 1 https://github.com/a16z/halmos-cheatcodes \
+            blockchain/lib/halmos-cheatcodes
+        working-directory: ${{ github.workspace }}
+
+      - name: Install npm dependencies (OpenZeppelin)
+        run: npm ci
+        working-directory: blockchain
+
+      - name: Compile contracts (forge)
+        run: forge build --config-path foundry.toml
+        working-directory: blockchain
+
+      - name: Install Python + Halmos
+        run: |
+          pip install halmos==0.2.1
+
+      - name: Run Halmos — VoteLedger properties
+        run: |
+          halmos \
+            --config halmos.toml \
+            --contract VoteLedgerFormalSpec \
+            --foundry-profile default \
+            --solver z3
+        working-directory: blockchain
+
+      - name: Run Halmos — VoterRegistry properties
+        run: |
+          halmos \
+            --config halmos.toml \
+            --contract VoterRegistryFormalSpec \
+            --foundry-profile default \
+            --solver z3
+        working-directory: blockchain

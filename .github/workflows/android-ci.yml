@@ -1,0 +1,53 @@
+name: Android CI
+
+on:
+  push:
+    branches: [main, "release/**"]
+    paths: ["android/**", ".github/workflows/android-ci.yml"]
+  pull_request:
+    branches: [main]
+    paths: ["android/**"]
+
+jobs:
+  test:
+    name: Build & Test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+          cache: gradle
+
+      - name: Gradle lint
+        working-directory: android
+        run: ./gradlew lint --no-daemon
+
+      - name: Unit tests
+        working-directory: android
+        run: ./gradlew testDebugUnitTest --no-daemon
+
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: android-test-results
+          path: android/app/build/reports/tests/
+
+  security:
+    name: Dependency Security Scan
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+          cache: gradle
+      - name: OWASP Dependency Check
+        working-directory: android
+        run: ./gradlew dependencyCheckAnalyze --no-daemon
+        env:
+          NVD_API_KEY: ${{ secrets.NVD_API_KEY }}

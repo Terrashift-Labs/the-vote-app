@@ -1,0 +1,37 @@
+{
+  "code": "KE",
+  "name": "Kenya",
+  "nativeName": "Kenya",
+  "language": "sw",
+  "languages": ["sw", "en"],
+  "rtl": false,
+  "identityScheme": "huduma-namba",
+  "flagEmoji": "🇰🇪",
+  "region": "africa",
+  "branding": {
+    "primaryColor": "#006600",
+    "secondaryColor": "#BB0000",
+    "surfaceColor": "#F0FFF0",
+    "onPrimaryColor": "#FFFFFF",
+    "darkStatusBar": true,
+    "governmentPortalName": "kenya.go.ke",
+    "governmentPortalURL": "https://www.kenya.go.ke",
+    "governmentLogoAlt": "Government of Kenya — Harambee",
+    "flagColors": ["#006600", "#FFFFFF", "#BB0000", "#000000"]
+  },
+  "policies": [
+    {
+      "id": "ke-uhs-2026",
+      "title": "Universal Health Coverage Scale-up 2026",
+      "description": "National expansion of UHC to all 47 counties, including free maternity care, cancer treatment, and community health worker programme.",
+      "category": "healthcare",
+      "documentIpfsCID": "",
+      "votingDeadlineISO": "2026-12-12T23:59:59Z",
+      "options": [
+        { "id": "support",  "label": "option.support",  "description": "option.support.desc" },
+        { "id": "oppose",   "label": "option.oppose",   "description": "option.oppose.desc" },
+        { "id": "abstain",  "label": "option.abstain",  "description": "option.abstain.desc" }
+      ]
+    }
+  ]
+}

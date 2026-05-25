@@ -1,0 +1,7 @@
+Contact: mailto:security@thevoteapp.org
+Contact: https://immunefi.com/bounty/thevoteapp
+Expires: 2027-01-01T00:00:00.000Z
+Acknowledgments: https://github.com/TheVoteApp/the-vote-app/blob/main/docs/hall-of-fame.md
+Preferred-Languages: en
+Canonical: https://thevoteapp.org/.well-known/security.txt
+Policy: https://github.com/TheVoteApp/the-vote-app/blob/main/.github/SECURITY.md

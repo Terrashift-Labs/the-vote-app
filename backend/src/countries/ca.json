@@ -1,0 +1,51 @@
+{
+  "code": "CA",
+  "name": "Canada",
+  "nativeName": "Canada",
+  "language": "en",
+  "languages": ["en", "fr"],
+  "rtl": false,
+  "identityScheme": "gc-key",
+  "flagEmoji": "🇨🇦",
+  "region": "americas",
+  "branding": {
+    "primaryColor": "#AF3C43",
+    "secondaryColor": "#26374A",
+    "surfaceColor": "#F8F8F8",
+    "onPrimaryColor": "#FFFFFF",
+    "darkStatusBar": true,
+    "governmentPortalName": "canada.ca",
+    "governmentPortalURL": "https://www.canada.ca",
+    "governmentLogoAlt": "Government of Canada / Gouvernement du Canada",
+    "flagColors": ["#FF0000", "#FFFFFF"],
+    "headerFontFamily": "Lato"
+  },
+  "policies": [
+    {
+      "id": "ca-pharmacare-2026",
+      "title": "National Pharmacare Act 2026",
+      "description": "Implementation of universal public drug coverage, beginning with diabetes and contraceptive medications, expanding to all essential medicines by 2028.",
+      "category": "healthcare",
+      "documentIpfsCID": "",
+      "votingDeadlineISO": "2026-10-15T23:59:59Z",
+      "options": [
+        { "id": "support",  "label": "option.support",  "description": "option.support.desc" },
+        { "id": "oppose",   "label": "option.oppose",   "description": "option.oppose.desc" },
+        { "id": "abstain",  "label": "option.abstain",  "description": "option.abstain.desc" }
+      ]
+    },
+    {
+      "id": "ca-reconciliation-2026",
+      "title": "Indigenous Reconciliation Framework 2026",
+      "description": "Legislation implementing UNDRIP into Canadian law with binding timelines for land rights, funding equity, and language revitalisation.",
+      "category": "justice",
+      "documentIpfsCID": "",
+      "votingDeadlineISO": "2026-10-15T23:59:59Z",
+      "options": [
+        { "id": "support",  "label": "option.support",  "description": "option.support.desc" },
+        { "id": "oppose",   "label": "option.oppose",   "description": "option.oppose.desc" },
+        { "id": "abstain",  "label": "option.abstain",  "description": "option.abstain.desc" }
+      ]
+    }
+  ]
+}

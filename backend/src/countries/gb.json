@@ -1,0 +1,51 @@
+{
+  "code": "GB",
+  "name": "United Kingdom",
+  "nativeName": "United Kingdom",
+  "language": "en",
+  "languages": ["en", "cy", "gd"],
+  "rtl": false,
+  "identityScheme": "gov-uk-verify",
+  "flagEmoji": "🇬🇧",
+  "region": "europe",
+  "branding": {
+    "primaryColor": "#1D70B8",
+    "secondaryColor": "#0B0C0C",
+    "surfaceColor": "#F3F2F1",
+    "onPrimaryColor": "#FFFFFF",
+    "darkStatusBar": true,
+    "governmentPortalName": "GOV.UK",
+    "governmentPortalURL": "https://www.gov.uk",
+    "governmentLogoAlt": "GOV.UK — the official website for the UK Government",
+    "flagColors": ["#012169", "#C8102E", "#FFFFFF"],
+    "headerFontFamily": "GDS Transport"
+  },
+  "policies": [
+    {
+      "id": "gb-nhs-reform-2026",
+      "title": "NHS Reform Act 2026",
+      "description": "Proposed structural changes to the National Health Service including regional autonomy, digital-first services, and updated funding models.",
+      "category": "healthcare",
+      "documentIpfsCID": "",
+      "votingDeadlineISO": "2026-12-31T23:59:59Z",
+      "options": [
+        { "id": "support",  "label": "option.support",  "description": "option.support.desc" },
+        { "id": "oppose",   "label": "option.oppose",   "description": "option.oppose.desc" },
+        { "id": "abstain",  "label": "option.abstain",  "description": "option.abstain.desc" }
+      ]
+    },
+    {
+      "id": "gb-energy-transition-2026",
+      "title": "Clean Energy Transition Plan 2026",
+      "description": "A plan to accelerate the UK's transition to net-zero by 2050, including expanded offshore wind, home insulation grants, and phasing out gas boilers.",
+      "category": "environment",
+      "documentIpfsCID": "",
+      "votingDeadlineISO": "2026-12-31T23:59:59Z",
+      "options": [
+        { "id": "support",  "label": "option.support",  "description": "option.support.desc" },
+        { "id": "oppose",   "label": "option.oppose",   "description": "option.oppose.desc" },
+        { "id": "abstain",  "label": "option.abstain",  "description": "option.abstain.desc" }
+      ]
+    }
+  ]
+}
