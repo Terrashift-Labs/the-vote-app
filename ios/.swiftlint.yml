@@ -1,0 +1,32 @@
+# SwiftLint configuration for TheVoteApp iOS
+# Enables strict linting for code quality
+
+disabled_rules:
+  - variable_name
+  - line_length
+  - trailing_whitespace
+
+opt_in_rules:
+  - empty_count
+  - unused_declaration
+
+included:
+  - VoteGlobal
+  - VoteGlobalTests
+
+excluded:
+  - Pods
+  - .build
+
+# Relaxed rules for development
+line_length:
+  warning: 120
+  error: 180
+
+type_body_length:
+  warning: 300
+  error: 400
+
+cyclomatic_complexity:
+  warning: 10
+  error: 20
