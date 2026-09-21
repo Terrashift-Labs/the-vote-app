@@ -2,6 +2,7 @@ import type { BaseIdentityAdapter } from "./BaseIdentityAdapter.js";
 import { eidasAdapter }  from "./eIDASAdapter.js";
 import { govUKAdapter }  from "./GovUKAdapter.js";
 import { mockAdapter }   from "./MockAdapter.js";
+import { zkPassportAdapter } from "./ZKPassportAdapter.js";
 
 /**
  * Central registry of all configured identity adapters.
@@ -10,6 +11,7 @@ import { mockAdapter }   from "./MockAdapter.js";
 const adapters = new Map<string, BaseIdentityAdapter>([
   ["eidas",  eidasAdapter],
   ["govuk",  govUKAdapter],
+  ["zkpassport", zkPassportAdapter],
   ["mock",   mockAdapter],
 ]);
 

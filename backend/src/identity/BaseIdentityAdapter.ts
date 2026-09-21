@@ -18,8 +18,20 @@ import { createHash } from "crypto";
  */
 
 export interface IdentityResult {
-  /** keccak256-compatible hex commitment — H(subjectId || countryCode || salt) */
+  /**
+   * Identity commitment for VoterRegistry.register().
+   *
+   * Legacy adapters (eIDAS, GovUK, mock) derive this server-side from the
+   * subject ID. Privacy-preserving adapters (zkpassport) take it from the
+   * client, so the server never learns the voter's secret.
+   */
   commitment: string;
+  /**
+   * Opaque per-document identifier used only to reject duplicate
+   * registrations (Sybil resistance). Never derive the vote key from it.
+   * Adapters that cannot supply one leave it undefined.
+   */
+  sybilKey?: string;
   /** ISO 3166-1 alpha-2 */
   countryCode: string;
   /** Adapter name for logging (NEVER log the subjectId itself) */

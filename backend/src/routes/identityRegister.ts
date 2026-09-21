@@ -2,6 +2,7 @@ import { Router, Request, Response } from "express";
 import { ethers } from "ethers";
 import { z } from "zod";
 import { getAdapter } from "../identity/IdentityAdapterRegistry.js";
+import { usedIdentifierStore } from "../repositories/UsedIdentifierStore.js";
 import logger from "../utils/logger.js";
 
 const router = Router();
@@ -32,7 +33,8 @@ const RegisterBody = z.object({
  *
  * Self-service voter registration:
  *   1. Verifies identity token via the named adapter
- *   2. Derives the commitment (no PII stored)
+ *   2. Obtains the commitment (client-supplied for zkpassport; no PII stored)
+ *      and rejects documents that have already registered
  *   3. Checks if already registered (idempotent)
  *   4. Submits VoterRegistry.register(commitment, countryCode) on-chain
  *
@@ -49,14 +51,25 @@ router.post("/register", async (req: Request, res: Response) => {
   try {
     // Step 1: Verify identity
     const adapter = getAdapter(adapterName);
-    const { commitment, countryCode } = await adapter.verify(token, extraParams);
+    const { commitment, countryCode, sybilKey } = await adapter.verify(token, extraParams);
 
     const registry    = getRegistry();
-    const countryBytes = ethers.encodeBytes32String(countryCode).slice(0, 6) as `0x${string}`;
     // bytes2 encoding: ISO code as UTF-8 hex, e.g. "GB" → 0x4742
     const countryBytes2 = ("0x" + Buffer.from(countryCode.padEnd(2).slice(0, 2)).toString("hex")) as `0x${string}`;
 
-    // Step 2: Check if already registered (idempotent)
+    // Step 2a: Reject a document that already registered with a different commitment.
+    // Same commitment = retry, which falls through to the idempotent check below.
+    let claimed = false;
+    if (sybilKey) {
+      const claim = await usedIdentifierStore.claim(sybilKey, commitment);
+      if (!claim.claimed && claim.existing !== commitment) {
+        logger.warn({ adapter: adapterName, countryCode }, "Duplicate registration rejected");
+        return res.status(409).json({ error: "This identity has already registered" });
+      }
+      claimed = claim.claimed;
+    }
+
+    // Step 2b: Check if already registered (idempotent)
     const alreadyRegistered: boolean = await registry.isRegistered(commitment, countryBytes2);
     if (alreadyRegistered) {
       logger.info({ adapter: adapterName, countryCode }, "Voter already registered — idempotent");
@@ -64,8 +77,15 @@ router.post("/register", async (req: Request, res: Response) => {
     }
 
     // Step 3: Submit on-chain registration
-    const tx      = await registry.register(commitment, countryBytes2);
-    const receipt = await tx.wait();
+    let receipt;
+    try {
+      const tx = await registry.register(commitment, countryBytes2);
+      receipt  = await tx.wait();
+    } catch (txErr) {
+      // Let the citizen retry if the chain rejected us.
+      if (sybilKey && claimed) await usedIdentifierStore.release(sybilKey, commitment);
+      throw txErr;
+    }
 
     logger.info(
       { adapter: adapterName, countryCode, txHash: receipt.hash },

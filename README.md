@@ -243,7 +243,7 @@ All commits must be signed off (`git commit -s`). No CLA required.
 
 ### Phase 9 — Ecosystem Maturity
 
-- [ ] Voter identity self-service — citizens register commitment via mobile without admin
+- [x] Voter identity self-service — citizens register commitment via mobile without admin
 - [ ] Election result certification — notarised PDF report with on-chain proof
 - [ ] Public API developer portal (OpenAPI 3.1 spec + interactive docs)
 - [ ] Bug bounty programme setup (Immunefi / HackerOne integration)

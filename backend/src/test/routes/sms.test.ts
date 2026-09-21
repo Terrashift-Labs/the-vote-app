@@ -1,6 +1,9 @@
 import request from "supertest";
 import { expect } from "chai";
+import sinon from "sinon";
 import app from "../../app.js";
+import * as RedisClient from "../../redis/RedisClient.js";
+import { makeRedisStub } from "../__stubs__/redis.js";
 
 // Twilio signature validation is bypassed in NODE_ENV=test (see routes/sms.ts)
 process.env.NODE_ENV = "test";
@@ -56,3 +59,8 @@ describe("POST /api/v1/sms/inbound", () => {
     expect(res.status).to.equal(400);
   });
 });
+
+// Shared Redis stub for the whole file (no live Redis in unit tests)
+let redisStub: sinon.SinonStub;
+beforeEach(() => { redisStub = sinon.stub(RedisClient, "getRedis").returns(makeRedisStub() as any); });
+afterEach(() => { redisStub.restore(); });

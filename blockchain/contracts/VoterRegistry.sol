@@ -84,8 +84,9 @@ contract VoterRegistry is
     {
         if (commitment == bytes32(0)) revert InvalidCommitment();
         if (_commitmentToCountry[commitment] != bytes2(0)) revert AlreadyRegistered();
-        if (countryRegistrar[countryCode] != address(0) &&
-            countryRegistrar[countryCode] != msg.sender) {
+        // Fail closed: a country with no registrar configured accepts no registrations.
+        address registrar = countryRegistrar[countryCode];
+        if (registrar == address(0) || registrar != msg.sender) {
             revert UnauthorisedRegistrar();
         }
 

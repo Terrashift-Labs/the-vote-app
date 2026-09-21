@@ -42,6 +42,7 @@ export const BrandingSchema = z.object({
 
 export const CountryConfigSchema = z.object({
   code:           z.string().length(2).toUpperCase(),  // ISO 3166-1 alpha-2
+  alpha3:         z.string().length(3).toUpperCase(),  // ISO 3166-1 alpha-3 (used by ZKPassport)
   name:           z.string(),                          // English name
   nativeName:     z.string(),                          // Name in national language
   language:       z.string().length(2),                // primary BCP-47 language
