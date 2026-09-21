@@ -61,6 +61,17 @@ contract VoteToken is ERC20Votes, ERC20Permit, Ownable {
 
     // ── Required overrides ────────────────────────────────────────────────────
 
+    /// @dev Timestamp clock: VoteGovernor's delay/period are expressed in seconds
+    ///      (1 days / 7 days). The default block-number clock would misread them as blocks.
+    function clock() public view override returns (uint48) {
+        return uint48(block.timestamp);
+    }
+
+    // solhint-disable-next-line func-name-mixedcase
+    function CLOCK_MODE() public pure override returns (string memory) {
+        return "mode=timestamp";
+    }
+
     function _update(address from, address to, uint256 value)
         internal
         override(ERC20, ERC20Votes)

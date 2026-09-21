@@ -64,7 +64,6 @@ contract VoterRegistry is
     function initialize(address initialOwner) external initializer {
         __Ownable_init(initialOwner);
         __Pausable_init();
-        __UUPSUpgradeable_init();
     }
 
     // -----------------------------------------------------------------------

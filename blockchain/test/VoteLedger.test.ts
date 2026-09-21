@@ -1,5 +1,6 @@
 import { expect } from "chai";
 import { ethers, upgrades } from "hardhat";
+import { time } from "@nomicfoundation/hardhat-network-helpers";
 import { SignerWithAddress } from "@nomicfoundation/hardhat-ethers/signers";
 import { VoteLedger, VoterRegistry, StubZKVerifier } from "../typechain-types";
 
@@ -16,7 +17,8 @@ describe("VoteLedger", () => {
   const optionHash = ethers.keccak256(ethers.toUtf8Bytes("support"));
   const nullifier = ethers.keccak256(ethers.toUtf8Bytes("voter-secret-policy-001"));
 
-  const futureDeadline = () => Math.floor(Date.now() / 1000) + 86400; // +1 day
+  // Chain time, not wall-clock: other suites advance the shared Hardhat clock.
+  const futureDeadline = async () => (await time.latest()) + 86400; // +1 day
 
   const stubProof = {
     piA: [0n, 0n] as [bigint, bigint],
@@ -47,7 +49,7 @@ describe("VoteLedger", () => {
 
   describe("Poll creation", () => {
     it("creates a poll with correct metadata", async () => {
-      const deadline = futureDeadline();
+      const deadline = await futureDeadline();
       await voteLedger.createPoll(policyId, GB, deadline);
       const pollId = ethers.keccak256(
         ethers.AbiCoder.defaultAbiCoder().encode(
@@ -69,7 +71,7 @@ describe("VoteLedger", () => {
 
     it("only allows owner to create polls", async () => {
       await expect(
-        voteLedger.connect(voter).createPoll(policyId, GB, futureDeadline())
+        voteLedger.connect(voter).createPoll(policyId, GB, await futureDeadline())
       ).to.be.revertedWithCustomError(voteLedger, "OwnableUnauthorizedAccount");
     });
   });
@@ -78,7 +80,7 @@ describe("VoteLedger", () => {
     let pollId: string;
 
     beforeEach(async () => {
-      const deadline = futureDeadline();
+      const deadline = await futureDeadline();
       const tx = await voteLedger.createPoll(policyId, GB, deadline);
       await tx.wait();
       pollId = ethers.keccak256(
@@ -107,7 +109,7 @@ describe("VoteLedger", () => {
 
   describe("Finalisation", () => {
     it("owner can finalise a poll", async () => {
-      await voteLedger.createPoll(policyId, GB, futureDeadline());
+      await voteLedger.createPoll(policyId, GB, await futureDeadline());
       const pollId = ethers.keccak256(
         ethers.solidityPacked(["string", "bytes2"], [policyId, GB])
       );

@@ -106,7 +106,6 @@ contract HomomorphicTally is Initializable, AccessControlUpgradeable, UUPSUpgrad
 
     function initialize(address admin, address _voteProofVerifier) external initializer {
         __AccessControl_init();
-        __UUPSUpgradeable_init();
         _grantRole(DEFAULT_ADMIN_ROLE, admin);
         _grantRole(TALLY_AUTHORITY_ROLE, admin);
         _grantRole(UPGRADER_ROLE, admin);
