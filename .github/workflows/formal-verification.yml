@@ -42,7 +42,7 @@ jobs:
         working-directory: blockchain
 
       - name: Compile contracts (forge)
-        run: forge build --config-path foundry.toml
+        run: forge build --config-path foundry.toml --profile halmos
         working-directory: blockchain
 
       - name: Install Python + Halmos
@@ -54,7 +54,7 @@ jobs:
           halmos \
             --config halmos.toml \
             --contract VoteLedgerFormalSpec \
-            --foundry-profile default \
+            --foundry-profile halmos \
             --solver z3
         working-directory: blockchain
 
@@ -63,6 +63,6 @@ jobs:
           halmos \
             --config halmos.toml \
             --contract VoterRegistryFormalSpec \
-            --foundry-profile default \
+            --foundry-profile halmos \
             --solver z3
         working-directory: blockchain

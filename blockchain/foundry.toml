@@ -19,4 +19,5 @@ runs = 256
 
 [profile.halmos]
 # Halmos uses this profile — keep loop unrolling tight to bound symbolic execution
-optimizer = false
+optimizer = true
+via_ir = true
