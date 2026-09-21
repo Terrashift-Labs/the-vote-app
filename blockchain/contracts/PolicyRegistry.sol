@@ -39,7 +39,6 @@ contract PolicyRegistry is
 
     function initialize(address initialOwner) external initializer {
         __Ownable_init(initialOwner);
-        __UUPSUpgradeable_init();
     }
 
     /**
@@ -56,13 +55,13 @@ contract PolicyRegistry is
         bytes32 key = keccak256(bytes(policyId));
         if (policies[key].createdAt != 0) revert PolicyExists();
 
-        policies[key] = PolicyMeta({
-            countryCode:  countryCode,
-            documentHash: bytes32(bytes(ipfsCID)),
-            ipfsCID:      ipfsCID,
-            createdAt:    uint64(block.timestamp),
-            active:       true
-        });
+        // Field-wise writes: a struct literal copied to storage exceeds the stack under viaIR.
+        PolicyMeta storage p = policies[key];
+        p.countryCode  = countryCode;
+        p.documentHash = bytes32(bytes(ipfsCID));
+        p.ipfsCID      = ipfsCID;
+        p.createdAt    = uint64(block.timestamp);
+        p.active       = true;
 
         emit PolicyPublished(key, countryCode, ipfsCID);
     }

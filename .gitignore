@@ -95,3 +95,4 @@ test-results/
 # ============================================================
 logs/
 *.log
+blockchain/coverage.json

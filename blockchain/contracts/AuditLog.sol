@@ -49,7 +49,6 @@ contract AuditLog is Initializable, AccessControlUpgradeable, UUPSUpgradeable {
 
     function initialize(address admin) public initializer {
         __AccessControl_init();
-        __UUPSUpgradeable_init();
         _grantRole(DEFAULT_ADMIN_ROLE, admin);
         _grantRole(AUDITOR_ROLE, admin);
         _grantRole(UPGRADER_ROLE, admin);

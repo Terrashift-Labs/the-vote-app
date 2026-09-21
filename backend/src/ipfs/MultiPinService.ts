@@ -120,7 +120,7 @@ export class MultiPinService {
 
     try {
       const form = new FormData();
-      form.append("file", new Blob([content]), filename);
+      form.append("file", new Blob([content as BlobPart]), filename);
       form.append("pinataOptions", JSON.stringify({ cidVersion: 1 }));
 
       const res = await fetch("https://api.pinata.cloud/pinning/pinFileToIPFS", {
@@ -148,7 +148,7 @@ export class MultiPinService {
 
     try {
       const form = new FormData();
-      form.append("file", new Blob([content]), filename);
+      form.append("file", new Blob([content as BlobPart]), filename);
 
       const res = await fetch("https://api.web3.storage/upload", {
         method: "POST",
@@ -198,7 +198,7 @@ export class MultiPinService {
       const res = await fetch(url, {
         method: "PUT",
         headers: { ...headers, "x-amz-meta-import": "car" },
-        body: content,
+        body: content as unknown as BodyInit,
       });
 
       if (!res.ok) throw new Error(`HTTP ${res.status}: ${await res.text()}`);

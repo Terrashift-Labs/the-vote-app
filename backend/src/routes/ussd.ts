@@ -16,7 +16,7 @@ const router = Router();
  *
  * Response must be plain text prefixed with CON (continue) or END (terminate).
  */
-router.post("/", (req: Request, res: Response) => {
+router.post("/", async (req: Request, res: Response) => {
   const sessionId   = req.body?.sessionId   ?? "";
   const phoneNumber = req.body?.phoneNumber ?? "";
   const text        = req.body?.text        ?? "";
@@ -28,7 +28,7 @@ router.post("/", (req: Request, res: Response) => {
   logger.info({ sessionId, phone: maskPhone(phoneNumber) }, "USSD request");
 
   try {
-    const result = ussdVoteService.handle(sessionId, phoneNumber, text);
+    const result = await ussdVoteService.handle(sessionId, phoneNumber, text);
     const prefix = result.continue ? "CON " : "END ";
     return res.type("text/plain").send(prefix + result.text);
   } catch (err) {

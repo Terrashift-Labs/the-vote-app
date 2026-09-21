@@ -95,7 +95,6 @@ contract VoteLedger is
     ) external initializer {
         __Ownable_init(initialOwner);
         __Pausable_init();
-        __UUPSUpgradeable_init();
         voterRegistry = VoterRegistry(voterRegistryAddress);
         zkVerifier = IZKVerifier(zkVerifierAddress);
     }
