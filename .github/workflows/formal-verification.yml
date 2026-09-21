@@ -53,14 +53,12 @@ jobs:
         run: |
           halmos \
             --config halmos.toml \
-            --contract VoteLedgerFormalSpec \
-            --foundry-profile halmos
+            --contract VoteLedgerFormalSpec
         working-directory: blockchain
 
       - name: Run Halmos — VoterRegistry properties
         run: |
           halmos \
             --config halmos.toml \
-            --contract VoterRegistryFormalSpec \
-            --foundry-profile halmos
+            --contract VoterRegistryFormalSpec
         working-directory: blockchain
