@@ -1,13 +1,12 @@
 import { Router, Request, Response } from "express";
 import swaggerUi from "swagger-ui-express";
 import { readFileSync } from "fs";
-import { join, dirname } from "path";
-import { fileURLToPath } from "url";
+import { join } from "path";
 import yaml from "js-yaml";
 
 const router = Router();
 
-const __dir = dirname(fileURLToPath(import.meta.url));
+const __dir = __dirname;
 const spec  = yaml.load(
   readFileSync(join(__dir, "../../openapi.yaml"), "utf8")
 ) as object;

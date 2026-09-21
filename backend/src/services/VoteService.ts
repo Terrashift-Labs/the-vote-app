@@ -51,7 +51,7 @@ export class VoteService {
     });
 
     return {
-      transactionHash: receipt.transactionHash,
+      transactionHash: receipt.hash,
       blockNumber:     Number(receipt.blockNumber),
       nullifier:       request.voterNullifier,
       timestamp:       Date.now(),

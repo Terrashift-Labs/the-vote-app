@@ -89,6 +89,12 @@ export class BlockchainService {
     };
   }
 
+  async getReceipt(txHash: string): Promise<{ transactionHash: string; blockNumber: number; status: "success" | "reverted" } | null> {
+    const r = await this.provider.getTransactionReceipt(txHash);
+    if (!r) return null;
+    return { transactionHash: r.hash, blockNumber: r.blockNumber, status: r.status === 1 ? "success" : "reverted" };
+  }
+
   private getCountryCode(policyId: string): string {
     // In production, look up from PolicyRegistry or database
     return "GB";

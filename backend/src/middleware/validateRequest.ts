@@ -8,7 +8,7 @@ export function validateRequest(
   return (req: Request, res: Response, next: NextFunction) => {
     const result = schema.safeParse(req[source]);
     if (!result.success) {
-      res.status(422).json({
+      res.status(400).json({
         error: "Validation failed",
         issues: result.error.issues.map((i) => ({
           path: i.path.join("."),

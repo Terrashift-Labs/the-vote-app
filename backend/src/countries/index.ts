@@ -1,4 +1,4 @@
-import { readdirSync } from "fs";
+import { readdirSync, readFileSync } from "fs";
 import { join } from "path";
 import { CountryConfig, CountryConfigSchema } from "./schema";
 
@@ -15,7 +15,7 @@ function loadAll(): Map<string, CountryConfig> {
   );
 
   for (const file of files) {
-    const raw = require(join(COUNTRIES_DIR, file));
+    const raw = JSON.parse(readFileSync(join(COUNTRIES_DIR, file), "utf8"));
     const result = CountryConfigSchema.safeParse(raw);
     if (result.success) {
       _cache.set(result.data.code.toUpperCase(), result.data);

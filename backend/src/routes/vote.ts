@@ -32,7 +32,7 @@ const verifySchema = z.object({
  * Returns the transaction hash and block number.
  */
 voteRouter.post(
-  "/",
+  ["/", "/submit"],
   validateRequest(voteSchema),
   async (req, res, next) => {
     try {
@@ -85,5 +85,22 @@ voteRouter.get("/results/:policyId", async (req, res, next) => {
     res.json(results);
   } catch (err) {
     next(err);
+  }
+});
+
+/**
+ * GET /api/v1/vote/receipt/:txHash
+ * Public receipt lookup by transaction hash (no voter identity is returned).
+ */
+voteRouter.get("/receipt/:txHash", async (req, res, next) => {
+  try {
+    if (!/^0x[0-9a-fA-F]{64}$/.test(req.params.txHash)) {
+      return res.status(400).json({ error: "Invalid transaction hash" });
+    }
+    const receipt = await new BlockchainService().getReceipt(req.params.txHash);
+    if (!receipt) return res.status(404).json({ error: "Receipt not found" });
+    return res.json(receipt);
+  } catch (err) {
+    return next(err);
   }
 });
