@@ -19,6 +19,7 @@ import auditRouter from "./routes/audit";
 import notificationsRouter from "./routes/notifications";
 import ipfsRouter from "./routes/ipfs";
 import identityRouter from "./routes/identity";
+import identityRegisterRouter from "./routes/identityRegister";
 import healthDeepRouter from "./routes/healthDeep";
 import wellKnownRouter from "./routes/wellKnown";
 import { errorHandler } from "./middleware/errorHandler";
@@ -81,6 +82,7 @@ app.use("/api/v1/audit", auditLimiter, auditRouter);
 app.use("/api/v1/notifications", notificationsRouter);
 app.use("/api/v1/ipfs", ipfsRouter);
 app.use("/api/v1/identity", identityRouter);
+app.use("/api/v1/identity", identityRegisterRouter);
 app.use("/api/v1/htally", hTallyRouter);             // Homomorphic tally ciphertexts + results
 
 // ── Error handling ─────────────────────────────────────────────────────────────

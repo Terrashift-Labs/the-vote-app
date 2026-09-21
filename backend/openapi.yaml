@@ -158,6 +158,8 @@ paths:
             application/json:
               schema: { $ref: "#/components/schemas/IdentityRegisterResponse" }
         "400": { $ref: "#/components/responses/BadRequest" }
+        "409":
+          description: This identity (e.g. a ZKPassport document) has already registered
 
   # ── Governance ──────────────────────────────────────────────────────────────
 

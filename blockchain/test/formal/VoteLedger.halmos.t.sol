@@ -181,6 +181,7 @@ contract VoterRegistryFormalSpec is Test, SymTest {
     function setUp() public {
         registry = new VoterRegistry();
         registry.initialize(address(this));
+        registry.setCountryRegistrar(COUNTRY, address(this));
     }
 
     // ── Property 1: Zero commitment always reverts ────────────────────────────
@@ -230,6 +231,16 @@ contract VoterRegistryFormalSpec is Test, SymTest {
 
         // Attacker tries to register
         vm.prank(attacker);
+        vm.expectRevert(VoterRegistry.UnauthorisedRegistrar.selector);
+        registry.register(commitment, COUNTRY);
+    }
+
+    // ── Property 4b: No registrar configured => registration fails closed ─────
+
+    function check_noRegistrarRejectsAll(bytes32 commitment) public {
+        vm.assume(commitment != bytes32(0));
+        registry.setCountryRegistrar(COUNTRY, address(0));
+
         vm.expectRevert(VoterRegistry.UnauthorisedRegistrar.selector);
         registry.register(commitment, COUNTRY);
     }
