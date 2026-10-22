@@ -3,6 +3,8 @@ import { z } from "zod";
 import { createVerify } from "crypto";
 import { certificationService } from "../services/CertificationService.js";
 import { multiPinService } from "../ipfs/MultiPinService.js";
+import { requireAdmin } from "../middleware/requireAdmin.js";
+import { BlockchainService } from "../services/BlockchainService.js";
 import logger from "../utils/logger.js";
 
 const router = Router();
@@ -10,8 +12,8 @@ const router = Router();
 const CertifyBody = z.object({
   policyTitle: z.string().min(1).max(200),
   countryCode: z.string().length(2),
-  txHash:      z.string().min(1),
-  merkleRoot:  z.string().min(1),
+  txHash:      z.string().regex(/^0x[0-9a-fA-F]{64}$/),
+  merkleRoot:  z.string().regex(/^0x[0-9a-fA-F]{64}$/),
 });
 
 /**
@@ -19,7 +21,7 @@ const CertifyBody = z.object({
  * Generate and pin a signed election result certificate.
  * Returns { cid, signature, issuedAt, ipfsUrl }
  */
-router.post("/:pollId", async (req: Request, res: Response) => {
+router.post("/:pollId", requireAdmin, async (req: Request, res: Response) => {
   const parsed = CertifyBody.safeParse(req.body);
   if (!parsed.success) {
     return res.status(400).json({ error: "Invalid request", details: parsed.error.flatten() });
@@ -29,6 +31,12 @@ router.post("/:pollId", async (req: Request, res: Response) => {
   const { policyTitle, countryCode, txHash, merkleRoot } = parsed.data;
 
   try {
+    // The certificate's on-chain proof must be a real, successful transaction.
+    const receipt = await new BlockchainService().getReceipt(txHash);
+    if (!receipt || receipt.status !== "success") {
+      return res.status(422).json({ error: "txHash is not a confirmed successful transaction" });
+    }
+
     const result = await certificationService.certify(
       pollId, policyTitle, countryCode, txHash, merkleRoot
     );
@@ -58,6 +66,9 @@ router.get("/:pollId/verify", async (req: Request, res: Response) => {
     const publicKeyPem = process.env.CERT_SIGNING_KEY_PEM_PUBLIC;
 
     if (!publicKeyPem) {
+      if (process.env.NODE_ENV === "production") {
+        return res.status(503).json({ valid: false, error: "Certificate verification key not configured" });
+      }
       // Dev fallback — skip real verification
       return res.json({ valid: true, note: "Signature verification skipped in dev mode" });
     }

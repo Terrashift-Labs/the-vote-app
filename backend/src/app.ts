@@ -27,6 +27,7 @@ import { requestLogger } from "./middleware/requestLogger";
 import { metricsMiddleware } from "./middleware/metricsMiddleware";
 import { voteLimiter, auditLimiter, fido2Limiter } from "./middleware/rateLimitRedis";
 import hTallyRouter from "./routes/homomorphicTally";
+import certificationRouter from "./routes/certification";
 
 const app = express();
 
@@ -83,6 +84,7 @@ app.use("/api/v1/notifications", notificationsRouter);
 app.use("/api/v1/ipfs", ipfsRouter);
 app.use("/api/v1/identity", identityRouter);
 app.use("/api/v1/identity", identityRegisterRouter);
+app.use("/api/v1/certification", certificationRouter);
 app.use("/api/v1/htally", hTallyRouter);             // Homomorphic tally ciphertexts + results
 
 // ── Error handling ─────────────────────────────────────────────────────────────
