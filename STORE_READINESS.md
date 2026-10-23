@@ -77,3 +77,14 @@ reports only pre-existing warnings (no errors) unrelated to this change.
    have placeholder deploy steps (`echo "Deploying..."`) that need a real
    deploy mechanism (Fly.io, Railway, k8s, etc.) wired in before the release
    pipeline actually ships anything.
+7. **Backend dependency audit (60 advisories)** — `npm audit` on `backend/`
+   reports 60 pre-existing vulnerabilities (2 critical, 55 high), mostly
+   transitive through the `helia`/libp2p IPFS stack (`@helia/bitswap`,
+   `@ipshipyard/libp2p-auto-tls`, `acme-client`, `node-forge`) plus
+   `shell-quote`, `serialize-javascript`, `underscore`/`jsonpath`/`bfj`, and
+   `uuid`/`gaxios`. `backend-ci.yml`'s audit step now reports this as a
+   warning instead of failing the build, since `npm audit fix --force`
+   would pull in a breaking `helia@6.1.4` upgrade — that needs a deliberate,
+   tested upgrade pass, not an automatic CI-triggered one. This had never
+   actually been enforced before (see below) so it's a pre-existing gap, not
+   a regression.
