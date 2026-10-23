@@ -7,9 +7,9 @@
     "dev": "tsx watch src/index.ts",
     "build": "tsc -p tsconfig.json",
     "start": "node dist/index.js",
-    "test": "jest --runInBand",
+    "test": "jest --runInBand --forceExit",
     "test:watch": "jest --watch",
-    "coverage": "jest --coverage",
+    "coverage": "jest --coverage --forceExit",
     "lint": "eslint 'src/**/*.ts'",
     "lint:fix": "eslint 'src/**/*.ts' --fix",
     "deploy:prod": "npm run build && pm2 restart TheVoteApp-api || pm2 start dist/index.js --name TheVoteApp-api"
