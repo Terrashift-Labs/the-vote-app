@@ -73,61 +73,14 @@ TheVoteApp is designed with the following security properties:
 | Malicious admin | UUPS upgrade requires governance DAO multisig |
 | Traffic analysis | Nullifiers are unlinkable; votes padded to uniform size |
 
-## Bug Bounty Programme
+## Responsible Disclosure
 
-TheVoteApp operates a structured bug bounty programme. We reward security
-researchers who responsibly disclose vulnerabilities.
+Please report suspected vulnerabilities privately to **security@thevoteapp.org**. Include reproduction steps, potential impact, and any suggested mitigation. Do not publish details before a fix is available.
 
-### Scope
-
-**In scope (eligible for reward):**
-
-| Target | Examples |
-| --- | --- |
-| Smart contracts (`VoteLedger`, `VoterRegistry`, `PauseGuardian`, `AuditLog`) | Logic bugs, re-entrancy, integer overflow, access control bypass |
-| Backend API (`/api/v1/*`) | Auth bypass, injection, privilege escalation, data exposure |
-| iOS app | Keychain extraction, insecure storage, biometric bypass |
-| Android app | Keystore extraction, insecure IPC, root detection bypass |
-| ZK circuit | Soundness violations, malformed proof acceptance |
-| Cross-chain relay | Message replay, spoofed sender, fund drain |
-
-**Out of scope:**
-
-- Denial of Service (volumetric / resource exhaustion)
-- Social engineering attacks
-- Vulnerabilities in third-party dependencies not directly exploitable in our stack
-- Issues already publicly known or previously reported
-- Theoretical vulnerabilities without a working proof of concept
-
-### Severity & Rewards
-
-| Severity | Criteria | Reward |
-| --- | --- | --- |
-| Critical | Vote manipulation, nullifier bypass, fund drain | $5,000 – $20,000 |
-| High | Auth bypass, PII exposure, ZK soundness failure | $1,000 – $5,000 |
-| Medium | Privilege escalation, DoS on single component | $250 – $1,000 |
-| Low | Information disclosure, best-practice violation | $50 – $250 |
-| Informational | No direct security impact | Acknowledgement only |
-
-Rewards are paid in USDC on Ethereum mainnet.
-
-**On-chain bounties:** Smart contract vulnerabilities are additionally listed on
-[Immunefi](https://immunefi.com) under the TheVoteApp project. Critical
-on-chain findings may be eligible for up to **$50,000** via Immunefi.
-
-### Responsible Disclosure Timeline
-
-1. Report to **security@thevoteapp.org** — include PoC, impact, and suggested fix
-2. Acknowledgement within **48 hours**
-3. Triage and severity assessment within **5 business days**
-4. Fix and patch within: Critical → 24h, High → 7 days, Medium → 30 days
-5. Coordinated public disclosure after fix is deployed
-
-We will credit you in the release notes and on our
-[Security Hall of Fame](../docs/hall-of-fame.md) unless you prefer anonymity.
-
-**Please do not:**
+Please do not:
 
 - Test against the production mainnet deployment
 - Access, modify, or delete other users' data
 - Perform attacks that could degrade service for real citizens
+
+We welcome responsible security reports but do not operate a paid bug bounty programme or offer monetary rewards.
