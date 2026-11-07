@@ -13,13 +13,12 @@ router.get("/security.txt", (_req: Request, res: Response) => {
   res.type("text/plain").send(
     [
       "Contact: mailto:security@thevoteapp.org",
-      "Contact: https://immunefi.com/bounty/thevoteapp",
       `Expires: ${expires.toISOString()}`,
-      "Acknowledgments: https://github.com/TheVoteApp/the-vote-app/blob/main/docs/hall-of-fame.md",
+      "Acknowledgments: https://github.com/Terrashift-Labs/the-vote-app/blob/main/docs/hall-of-fame.md",
       "Preferred-Languages: en",
       "Canonical: https://api.thevoteapp.org/.well-known/security.txt",
-      "Policy: https://github.com/TheVoteApp/the-vote-app/blob/main/.github/SECURITY.md",
-      "Hiring: https://github.com/TheVoteApp/the-vote-app/blob/main/.github/CONTRIBUTING.md",
+      "Policy: https://github.com/Terrashift-Labs/the-vote-app/blob/main/.github/SECURITY.md",
+      "Hiring: https://github.com/Terrashift-Labs/the-vote-app/blob/main/.github/CONTRIBUTING.md",
     ].join("\n") + "\n"
   );
 });
