@@ -36,8 +36,18 @@ contract VoteLedgerFormalSpec is Test, SymTest {
     bytes2  internal constant COUNTRY = 0x4742; // "GB"
     uint64  internal constant DEADLINE_OFFSET = 365 days;
 
-    // Minimal stub ZK proof that StubZKVerifier accepts
-    VoteLedger.ZKProofData internal STUB_PROOF;
+    // Builds a stub ZK proof whose public signals are bound to the given
+    // nullifier/pollId, as castVote now requires (publicSignals[1]/[2]).
+    function _proofFor(bytes32 nullifier, bytes32 pollId) internal pure returns (VoteLedger.ZKProofData memory proof) {
+        proof.piA = [uint256(0), uint256(0)];
+        proof.piB = [[uint256(0), uint256(0)], [uint256(0), uint256(0)]];
+        proof.piC = [uint256(0), uint256(0)];
+        proof.publicSignals = new uint256[](4);
+        proof.publicSignals[0] = 0; // merkleRoot — not checked on-chain by this contract
+        proof.publicSignals[1] = uint256(nullifier);
+        proof.publicSignals[2] = uint256(pollId);
+        proof.publicSignals[3] = uint256(uint16(bytes2(COUNTRY)));
+    }
 
     function setUp() public {
         // Deploy implementations (no proxy for formal tests — proxy logic
@@ -56,12 +66,6 @@ contract VoteLedgerFormalSpec is Test, SymTest {
             COUNTRY,
             uint64(block.timestamp + DEADLINE_OFFSET)
         );
-
-        // Populate stub proof with zeros (StubZKVerifier ignores them)
-        STUB_PROOF.piA = [uint256(0), uint256(0)];
-        STUB_PROOF.piB = [[uint256(0), uint256(0)], [uint256(0), uint256(0)]];
-        STUB_PROOF.piC = [uint256(0), uint256(0)];
-        STUB_PROOF.publicSignals = new uint256[](0);
     }
 
     // ── Property 1: No double-voting ─────────────────────────────────────────
@@ -74,11 +78,11 @@ contract VoteLedgerFormalSpec is Test, SymTest {
         vm.assume(nullifier != bytes32(0));
 
         // First vote — should succeed
-        ledger.castVote(POLL_ID, optionHash, nullifier, STUB_PROOF);
+        ledger.castVote(POLL_ID, optionHash, nullifier, _proofFor(nullifier, POLL_ID));
 
         // Second vote with the same nullifier — must revert
         vm.expectRevert(VoteLedger.NullifierSpent.selector);
-        ledger.castVote(POLL_ID, optionHash, nullifier, STUB_PROOF);
+        ledger.castVote(POLL_ID, optionHash, nullifier, _proofFor(nullifier, POLL_ID));
     }
 
     // ── Property 2: Finalised poll rejects votes ──────────────────────────────
@@ -93,7 +97,7 @@ contract VoteLedgerFormalSpec is Test, SymTest {
         ledger.finalisePoll(POLL_ID);
 
         vm.expectRevert(VoteLedger.PollAlreadyFinalised.selector);
-        ledger.castVote(POLL_ID, optionHash, nullifier, STUB_PROOF);
+        ledger.castVote(POLL_ID, optionHash, nullifier, _proofFor(nullifier, POLL_ID));
     }
 
     // ── Property 3: totalVotes never decreases ────────────────────────────────
@@ -106,7 +110,7 @@ contract VoteLedgerFormalSpec is Test, SymTest {
         vm.assume(nullifier != bytes32(0));
 
         (, , , uint256 before) = ledger.getPollMeta(POLL_ID);
-        ledger.castVote(POLL_ID, optionHash, nullifier, STUB_PROOF);
+        ledger.castVote(POLL_ID, optionHash, nullifier, _proofFor(nullifier, POLL_ID));
         (, , , uint256 after_) = ledger.getPollMeta(POLL_ID);
 
         assert(after_ == before + 1);
@@ -123,7 +127,7 @@ contract VoteLedgerFormalSpec is Test, SymTest {
         ledger.pause();
 
         vm.expectRevert(); // EnforcedPause from OZ Pausable
-        ledger.castVote(POLL_ID, optionHash, nullifier, STUB_PROOF);
+        ledger.castVote(POLL_ID, optionHash, nullifier, _proofFor(nullifier, POLL_ID));
     }
 
     // ── Property 5: Unknown poll reverts ─────────────────────────────────────
@@ -140,7 +144,7 @@ contract VoteLedgerFormalSpec is Test, SymTest {
         vm.assume(nullifier != bytes32(0));
 
         vm.expectRevert(VoteLedger.PollNotFound.selector);
-        ledger.castVote(unknownPollId, optionHash, nullifier, STUB_PROOF);
+        ledger.castVote(unknownPollId, optionHash, nullifier, _proofFor(nullifier, unknownPollId));
     }
 
     // ── Property 6: Nullifier list length matches totalVotes ─────────────────
@@ -157,8 +161,8 @@ contract VoteLedgerFormalSpec is Test, SymTest {
         vm.assume(n1 != bytes32(0) && n2 != bytes32(0));
         vm.assume(n1 != n2); // distinct nullifiers
 
-        ledger.castVote(POLL_ID, opt, n1, STUB_PROOF);
-        ledger.castVote(POLL_ID, opt, n2, STUB_PROOF);
+        ledger.castVote(POLL_ID, opt, n1, _proofFor(n1, POLL_ID));
+        ledger.castVote(POLL_ID, opt, n2, _proofFor(n2, POLL_ID));
 
         (, , , uint256 total) = ledger.getPollMeta(POLL_ID);
         assert(ledger.nullifierList(0) == n1);
