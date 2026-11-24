@@ -20,12 +20,13 @@ describe("VoteLedger", () => {
   // Chain time, not wall-clock: other suites advance the shared Hardhat clock.
   const futureDeadline = async () => (await time.latest()) + 86400; // +1 day
 
-  const stubProof = {
+  // publicSignals order (eligibility_plonk.circom): [merkleRoot, nullifier, pollId, countryCode]
+  const makeProof = (nullifierHex: string, pollIdHex: string, countryHex: string = GB) => ({
     piA: [0n, 0n] as [bigint, bigint],
     piB: [[0n, 0n], [0n, 0n]] as [[bigint, bigint], [bigint, bigint]],
     piC: [0n, 0n] as [bigint, bigint],
-    publicSignals: [] as bigint[],
-  };
+    publicSignals: [0n, BigInt(nullifierHex), BigInt(pollIdHex), BigInt(countryHex)] as bigint[],
+  });
 
   beforeEach(async () => {
     [owner, voter] = await ethers.getSigners();
@@ -89,21 +90,43 @@ describe("VoteLedger", () => {
     });
 
     it("records a valid vote and increments tally", async () => {
-      await voteLedger.castVote(pollId, optionHash, nullifier, stubProof);
+      await voteLedger.castVote(pollId, optionHash, nullifier, makeProof(nullifier, pollId));
       const tally = await voteLedger.getTally(pollId, optionHash);
       expect(tally).to.equal(1n);
     });
 
     it("prevents double-voting with the same nullifier", async () => {
-      await voteLedger.castVote(pollId, optionHash, nullifier, stubProof);
+      await voteLedger.castVote(pollId, optionHash, nullifier, makeProof(nullifier, pollId));
       await expect(
-        voteLedger.castVote(pollId, optionHash, nullifier, stubProof)
+        voteLedger.castVote(pollId, optionHash, nullifier, makeProof(nullifier, pollId))
       ).to.be.revertedWithCustomError(voteLedger, "NullifierSpent");
     });
 
     it("marks nullifier as spent after vote", async () => {
-      await voteLedger.castVote(pollId, optionHash, nullifier, stubProof);
+      await voteLedger.castVote(pollId, optionHash, nullifier, makeProof(nullifier, pollId));
       expect(await voteLedger.isNullifierSpent(nullifier)).to.be.true;
+    });
+
+    it("rejects a proof whose public nullifier signal does not match the calldata nullifier", async () => {
+      const otherNullifier = ethers.keccak256(ethers.toUtf8Bytes("voter-secret-policy-002"));
+      await expect(
+        voteLedger.castVote(pollId, optionHash, nullifier, makeProof(otherNullifier, pollId))
+      ).to.be.revertedWithCustomError(voteLedger, "PublicSignalMismatch");
+    });
+
+    it("rejects a proof whose public pollId signal does not match the target poll", async () => {
+      const otherPollId = ethers.keccak256(ethers.toUtf8Bytes("some-other-poll"));
+      await expect(
+        voteLedger.castVote(pollId, optionHash, nullifier, makeProof(nullifier, otherPollId))
+      ).to.be.revertedWithCustomError(voteLedger, "PublicSignalMismatch");
+    });
+
+    it("rejects a replayed valid proof submitted with a fresh arbitrary nullifier (nullifier-bypass regression)", async () => {
+      await voteLedger.castVote(pollId, optionHash, nullifier, makeProof(nullifier, pollId));
+      const freshNullifier = ethers.keccak256(ethers.toUtf8Bytes("attacker-chosen-nullifier"));
+      await expect(
+        voteLedger.castVote(pollId, optionHash, freshNullifier, makeProof(nullifier, pollId))
+      ).to.be.revertedWithCustomError(voteLedger, "PublicSignalMismatch");
     });
   });
 

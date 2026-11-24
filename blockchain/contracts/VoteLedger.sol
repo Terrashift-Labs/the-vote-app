@@ -80,6 +80,7 @@ contract VoteLedger is
     error NullifierSpent();
     error InvalidZKProof();
     error DeadlineInPast();
+    error PublicSignalMismatch();
 
     // -----------------------------------------------------------------------
     // Initialiser
@@ -137,10 +138,16 @@ contract VoteLedger is
      * @param nullifier   H(voterSecret || policyId) — unique per voter per poll
      * @param proof       Groth16 proof: voter's commitment is in the registry tree
      *
-     * The ZK proof's public inputs must be:
+     * The ZK proof's public inputs must be (eligibility_plonk.circom):
      *   [0] = Merkle root of VoterRegistry commitments
      *   [1] = nullifier
      *   [2] = pollId (as uint256)
+     *   [3] = countryCode
+     *
+     * The proof is only meaningful if what it commits to matches the call —
+     * otherwise a single valid proof could be replayed with an arbitrary
+     * caller-supplied nullifier/pollId. publicSignals[1] and [2] are
+     * therefore checked against the calldata nullifier and pollId below.
      */
     function castVote(
         bytes32 pollId,
@@ -153,6 +160,11 @@ contract VoteLedger is
         if (block.timestamp > poll.deadline) revert PollClosed();
         if (poll.finalised)                  revert PollAlreadyFinalised();
         if (_nullifiers[nullifier])          revert NullifierSpent();
+
+        if (proof.publicSignals.length != 4) revert PublicSignalMismatch();
+        if (proof.publicSignals[1] != uint256(nullifier)) revert PublicSignalMismatch();
+        if (proof.publicSignals[2] != uint256(pollId))    revert PublicSignalMismatch();
+        if (bytes2(uint16(proof.publicSignals[3])) != poll.countryCode) revert PublicSignalMismatch();
 
         // Verify zero-knowledge proof
         bool valid = zkVerifier.verifyProof(
